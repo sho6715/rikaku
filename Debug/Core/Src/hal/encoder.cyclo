@@ -1,0 +1,4 @@
+../Core/Src/hal/encoder.c:11:6:ENC_clr	1
+../Core/Src/hal/encoder.c:17:10:Get_encoder_value	2
+../Core/Src/hal/encoder.c:23:6:ENC_GetDiv	1
+../Core/Src/hal/encoder.c:34:6:ENC_print	1

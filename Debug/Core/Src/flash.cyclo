@@ -1,0 +1,7 @@
+../Core/Inc/flash.h:19:22:FLASH_Lock	1
+../Core/Inc/flash.h:24:22:FLASH_Unlock	1
+../Core/Src/flash.c:18:6:FLASH_WaitBusy	2
+../Core/Src/flash.c:24:6:FLASH_Erase	1
+../Core/Src/flash.c:37:6:FLASH_WriteByte	1
+../Core/Src/flash.c:52:6:FLASH_WriteData	2
+../Core/Src/flash.c:68:6:FLASH_ReadData	1

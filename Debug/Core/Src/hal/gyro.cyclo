@@ -1,0 +1,17 @@
+../Core/Src/hal/gyro.c:24:10:Get_s_gyro	1
+../Core/Src/hal/gyro.c:28:6:ICM_42688_whoami	1
+../Core/Src/hal/gyro.c:37:6:ICM_42688_WriteByte	1
+../Core/Src/hal/gyro.c:45:6:ICM_42688_ReadByte	1
+../Core/Src/hal/gyro.c:55:6:ICM_42688_init	1
+../Core/Src/hal/gyro.c:81:6:ICM_42688_GyroRead_DMA	1
+../Core/Src/hal/gyro.c:86:6:ICM_42688_GyroData	1
+../Core/Src/hal/gyro.c:91:6:GYRO_SetRef	2
+../Core/Src/hal/gyro.c:106:7:GYRO_getSpeedErr	1
+../Core/Src/hal/gyro.c:124:7:GYRO_getNowAngle	1
+../Core/Src/hal/gyro.c:129:7:GYRO_getRef	1
+../Core/Src/hal/gyro.c:134:6:GYRO_Pol	2
+../Core/Src/hal/gyro.c:155:6:ACCEL_SetRef	2
+../Core/Src/hal/gyro.c:171:7:Accel_getSpeedErr	1
+../Core/Src/hal/gyro.c:181:6:ACCEL_Pol	1
+../Core/Src/hal/gyro.c:191:6:GYRO_staErrChkAngle	1
+../Core/Src/hal/gyro.c:198:6:GYRO_endErrChkAngle	1

@@ -1,0 +1,2 @@
+../Core/Src/hal/sen_batt.c:16:6:BAT_Pol	8	static
+../Core/Src/hal/sen_batt.c:49:7:get_battLv	8	static

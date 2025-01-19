@@ -1,0 +1,6 @@
+../Core/Src/parameter.c:126:15:PARAM_getGain	6
+../Core/Src/parameter.c:168:20:PARAM_getSpeedType	5
+../Core/Src/parameter.c:191:6:PARAM_setSpeedType	5
+../Core/Src/parameter.c:213:16:PARAM_getSpeed	5
+../Core/Src/parameter.c:301:6:PARAM_makeSra	16
+../Core/Src/parameter.c:531:8:PARAM_getSra	1

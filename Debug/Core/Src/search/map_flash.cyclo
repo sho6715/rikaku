@@ -1,0 +1,5 @@
+../Core/Inc/flash.h:19:22:FLASH_Lock	1
+../Core/Inc/flash.h:24:22:FLASH_Unlock	1
+../Core/Src/search/map_flash.c:11:6:Map_Write	1
+../Core/Src/search/map_flash.c:22:6:Map_Copy	2
+../Core/Src/search/map_flash.c:35:6:Map_Erase	1

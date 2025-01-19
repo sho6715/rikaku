@@ -1,0 +1,2 @@
+../Core/Src/hal/sen_batt.c:16:6:BAT_Pol	5
+../Core/Src/hal/sen_batt.c:49:7:get_battLv	1

@@ -1,0 +1,15 @@
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_rcc.h:1521:22:LL_RCC_SetUSARTClockSource	16	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:451:22:LL_AHB2_GRP1_EnableClock	24	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:1427:22:LL_APB2_GRP1_EnableClock	24	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usart.h:634:22:LL_USART_Enable	16	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usart.h:685:22:LL_USART_DisableFIFO	16	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usart.h:718:22:LL_USART_SetTXFIFOThreshold	40	static,ignoring_inline_asm
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usart.h:757:22:LL_USART_SetRXFIFOThreshold	40	static,ignoring_inline_asm
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usart.h:2673:22:LL_USART_ConfigAsyncMode	16	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usart.h:3023:26:LL_USART_IsActiveFlag_TXE_TXFNF	16	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usart.h:3193:26:LL_USART_IsActiveFlag_TEACK	16	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usart.h:3204:26:LL_USART_IsActiveFlag_REACK	16	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usart.h:4274:22:LL_USART_TransmitData8	16	static
+../Core/Src/usart.c:29:6:MX_USART1_UART_Init	64	static
+../Core/Src/usart.c:100:6:Communication_Initialize	8	static
+../Core/Src/usart.c:105:6:USART_TransmitByte	16	static

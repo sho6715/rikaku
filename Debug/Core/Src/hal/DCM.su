@@ -1,0 +1,6 @@
+../Core/Src/hal/DCM.c:10:6:DCM_setDirCw	16	static
+../Core/Src/hal/DCM.c:22:6:DCM_setDirCcw	16	static
+../Core/Src/hal/DCM.c:33:6:DCM_brakeMot	16	static
+../Core/Src/hal/DCM.c:44:6:DCM_staMot	16	static
+../Core/Src/hal/DCM.c:55:6:DCM_staMotAll	8	static
+../Core/Src/hal/DCM.c:61:6:DCM_setPwmDuty	16	static

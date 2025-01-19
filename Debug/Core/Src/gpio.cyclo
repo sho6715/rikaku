@@ -1,0 +1,15 @@
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:451:22:LL_AHB2_GRP1_EnableClock	1
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_gpio.h:813:26:LL_GPIO_IsInputPinSet	2
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_gpio.h:894:22:LL_GPIO_SetOutputPin	1
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_gpio.h:923:22:LL_GPIO_ResetOutputPin	1
+../Core/Src/gpio.c:42:6:MX_GPIO_Init	1
+../Core/Src/gpio.c:210:6:SetLED	6
+../Core/Src/gpio.c:228:6:SetBatLED	2
+../Core/Src/gpio.c:233:8:SW_IsOn_0	1
+../Core/Src/gpio.c:237:8:SW_IsOn_1	1
+../Core/Src/gpio.c:241:6:Set_SenFL	2
+../Core/Src/gpio.c:246:6:Set_SenSL	2
+../Core/Src/gpio.c:251:6:Set_SenSR	2
+../Core/Src/gpio.c:256:6:Set_SenFR	2
+../Core/Src/gpio.c:261:6:Set_MOT0	2
+../Core/Src/gpio.c:266:6:Set_MOT1	2

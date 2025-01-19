@@ -1,0 +1,4 @@
+../Core/Src/queue.c:10:6:PrintQueue	24	static
+../Core/Src/queue.c:19:6:InitQueue	24	static
+../Core/Src/queue.c:36:6:EnQueue	16	static
+../Core/Src/queue.c:64:12:DeQueue	24	static

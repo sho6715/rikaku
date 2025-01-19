@@ -1,0 +1,12 @@
+../Core/Src/hal/sen_dist.c:46:6:DIST_init	8	static
+../Core/Src/hal/sen_dist.c:70:9:DIST_getNowVal	16	static
+../Core/Src/hal/sen_dist.c:76:6:DIST_getErr	40	static
+../Core/Src/hal/sen_dist.c:158:6:DIST_getErrSkew	16	static
+../Core/Src/hal/sen_dist.c:192:6:DIST_Pol_FL	16	static
+../Core/Src/hal/sen_dist.c:208:6:DIST_Pol_FR	16	static
+../Core/Src/hal/sen_dist.c:227:6:DIST_Pol_SL	16	static
+../Core/Src/hal/sen_dist.c:245:6:DIST_Pol_SR	16	static
+../Core/Src/hal/sen_dist.c:262:6:Get_Sen_Nowdata	16	static
+../Core/Src/hal/sen_dist.c:267:6:DIST_isWall_FRONT	16	static
+../Core/Src/hal/sen_dist.c:280:6:DIST_isWall_R_SIDE	16	static
+../Core/Src/hal/sen_dist.c:291:6:DIST_isWall_L_SIDE	16	static

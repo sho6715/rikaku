@@ -1,0 +1,15 @@
+../Core/Src/hal/mode.c:34:6:SYS_start	1
+../Core/Src/hal/mode.c:68:6:MODE_inc	10
+../Core/Src/hal/mode.c:117:6:CountUP_mode	2
+../Core/Src/hal/mode.c:126:6:MODE_speed_parameter	1
+../Core/Src/hal/mode.c:147:6:MODE_exe_m0	9
+../Core/Src/hal/mode.c:392:6:MODE_exe_m1	9
+../Core/Src/hal/mode.c:455:6:MODE_exe_m2	25
+../Core/Src/hal/mode.c:743:6:MODE_exe_m3	9
+../Core/Src/hal/mode.c:1002:6:MODE_exe_m4	21
+../Core/Src/hal/mode.c:1178:6:MODE_exe_m5	9
+../Core/Src/hal/mode.c:1461:6:MODE_exe	39
+../Core/Src/hal/mode.c:1644:6:MODE_DistRightCheck	2
+../Core/Src/hal/mode.c:1661:6:MODE_DistLeftCheck	2
+../Core/Src/hal/mode.c:1679:6:MODE_setWaitCheck	5
+../Core/Src/hal/mode.c:1700:6:MODE_CheckExe	3
