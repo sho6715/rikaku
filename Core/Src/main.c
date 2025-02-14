@@ -148,7 +148,7 @@ int main(void)
 		LL_mDelay(200);			// SWが離されるまで????��?��??��?��???��?��??��?��?つ
 		printf("mode selecting\r\n");
 	}
-	else if (( SW_IsOn_0() == SW_ON )/*||(TRUE == MODE_CheckExe())*/){
+	else if (( SW_IsOn_0() == SW_ON )||(TRUE == MODE_CheckExe())){
 //		else if ( SW_ON == SW_EXE_PIN ){
 		MODE_exe();								// モード実�?
 		LL_mDelay(200);			// SWが離されるまで????��?��??��?��???��?��??��?��?つ

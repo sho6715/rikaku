@@ -60,34 +60,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := BF01
+BUILD_ARTIFACT_NAME := rikaku
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-BF01.elf \
+rikaku.elf \
 
 MAP_FILES += \
-BF01.map \
+rikaku.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-BF01.list \
+rikaku.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: BF01.elf secondary-outputs
+main-build: rikaku.elf secondary-outputs
 
 # Tool invocations
-BF01.elf BF01.map: $(OBJS) $(USER_OBJS) C:\Users\shohe\STM32CubeIDE\BF01\BF01\STM32G474CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "BF01.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\shohe\STM32CubeIDE\BF01\BF01\STM32G474CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BF01.map" -Wl,--gc-sections -static -L"C:\Users\shohe\STM32CubeIDE\BF01\BF01" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+rikaku.elf rikaku.map: $(OBJS) $(USER_OBJS) C:\Users\shohe\STM32CubeIDE\rikaku\rikaku\STM32G474CEUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "rikaku.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\shohe\STM32CubeIDE\rikaku\rikaku\STM32G474CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="rikaku.map" -Wl,--gc-sections -static -L"C:\Users\shohe\STM32CubeIDE\rikaku\rikaku" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -96,14 +96,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-BF01.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "BF01.list"
+rikaku.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "rikaku.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) BF01.elf BF01.list BF01.map default.size.stdout
+	-$(RM) default.size.stdout rikaku.elf rikaku.list rikaku.map
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

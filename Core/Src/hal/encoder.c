@@ -27,8 +27,8 @@ void ENC_GetDiv( int32_t* p_r, int32_t* p_l )
 
 	ENC_clr();
 
-	*p_r = l_cntR - ENC_RESET_VAL;		// 右モータ
-	*p_l = ENC_RESET_VAL - l_cntL;		// 左モータ
+	*p_r = ENC_RESET_VAL - l_cntR;		// 右モータ
+	*p_l = l_cntL - ENC_RESET_VAL;		// 左モータ
 }
 
 void ENC_print(void)
