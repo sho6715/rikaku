@@ -296,7 +296,7 @@ void TIM6_DAC_IRQHandler(void)
       case 1:
         break;
       case 2:
-        ICM_42688_GyroRead_DMA(0x29);
+        ICM_42688_GyroRead_DMA(0x26);
         break;
       case 3:
         ICM_42688_GyroData();

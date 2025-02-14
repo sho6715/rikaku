@@ -145,18 +145,18 @@ int main(void)
   {
       if (( SW_IsOn_1() == SW_ON)||CountUP_mode()){
 		MODE_inc();								// モードを1つ進める
-		LL_mDelay(200);			// SWが離されるまで????��?��??��?��???��?��??��?��?つ
+		LL_mDelay(200);			// SWが離されるまで????��?��??��?��???��?��??��?��?つ
 		printf("mode selecting\r\n");
 	}
 	else if (( SW_IsOn_0() == SW_ON )/*||(TRUE == MODE_CheckExe())*/){
 //		else if ( SW_ON == SW_EXE_PIN ){
 		MODE_exe();								// モード実�?
-		LL_mDelay(200);			// SWが離されるまで????��?��??��?��???��?��??��?��?つ
+		LL_mDelay(200);			// SWが離されるまで????��?��??��?��???��?��??��?��?つ
 	}
     LL_mDelay(100);
-//  Get_Sen_Nowdata();
+  Get_Sen_Nowdata();
 //  printf("batt %5.2f \r",get_battLv());
-  printf("s_val%x\n\r",Get_s_gyro());
+//  printf("s_val%x\n\r",Get_s_gyro());
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

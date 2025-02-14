@@ -27,7 +27,7 @@ uint16_t Get_s_gyro(void)
 }
 void ICM_42688_whoami(void)
 {
-	SetSPI2TransmitData(0,(0x75 | 0x80));
+	SetSPI2TransmitData(0,(0x0F | 0x80));
 	SetSPI2TransmitData(1, 0x00);
 	SPI2_DMA_Communication(2);
 	printf("who am i = %x\r\n",Get_SPI2ReciveData(1));
@@ -54,7 +54,7 @@ void ICM_42688_ReadByte(uint8_t reg,uint8_t length)
 
 void ICM_42688_init(void)
 {
-	uint8_t reg78 = 0x4E;	//pwr_mgmt0
+//	uint8_t reg78 = 0x4E;	//pwr_mgmt0
 //	uint16_t reg79 = 0x4F;	//gyro_config0 default
 
 /*
@@ -62,11 +62,11 @@ void ICM_42688_init(void)
 	uint16_t reg106 = 0x6A;
 	uint16_t reg27 = 0x1B;
 	uint16_t reg28 = 0x1C;
-*/
+
 	ICM_42688_WriteByte(reg78,0x0F);
 	LL_mDelay(1);
 
-/*
+
 	ICM_42688_WriteByte(reg107,0x80);
 	LL_mDelay(1);
 	ICM_42688_WriteByte(reg106,0x11);
@@ -76,6 +76,17 @@ void ICM_42688_init(void)
 	ICM_42688_WriteByte(reg28,0x18);
 	LL_mDelay(1);
 */
+	uint8_t reg16 = 0x10;	//CTRL1_XL
+	uint8_t reg17 = 0x11;	//CTRL2_G
+	uint8_t reg18 = 0x12;	//CTRL3_C
+
+	ICM_42688_WriteByte(reg16,0x84);
+	LL_mDelay(1);
+	ICM_42688_WriteByte(reg17,0x81);
+	LL_mDelay(1);
+	ICM_42688_WriteByte(reg18,0x04);
+	LL_mDelay(1);
+
 }
 
 void ICM_42688_GyroRead_DMA(uint8_t reg) //reg 29 2A
@@ -85,7 +96,7 @@ void ICM_42688_GyroRead_DMA(uint8_t reg) //reg 29 2A
 
 void ICM_42688_GyroData(void)
 {
-	s_GyroVal=((uint16_t)Get_SPI2ReciveData(1)<<8|Get_SPI2ReciveData(2));
+	s_GyroVal=((uint16_t)Get_SPI2ReciveData(2)<<8|Get_SPI2ReciveData(1));
 }
 
 void GYRO_SetRef( void )
@@ -111,7 +122,7 @@ float GYRO_getSpeedErr( void )
 
 	/* 角速度の偏差算出 */
 //	if( ( l_err < -0.01 * 100 ) || ( 0.01 * 100 < l_err ) ){
-		f_res = (float)l_err /16.4 / 100.0 * DEG_TO_RAD;		
+		f_res = (float)l_err /140.0 / 100.0 * DEG_TO_RAD;
 													// 精度を100倍にする
 //	}
 /*	else{
