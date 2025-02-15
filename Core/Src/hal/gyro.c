@@ -76,6 +76,8 @@ void ICM_42688_init(void)
 	ICM_42688_WriteByte(reg28,0x18);
 	LL_mDelay(1);
 */
+//	CTRL6_Gがなんかいるかも
+//　ms調整がいるかもなぁ
 	uint8_t reg16 = 0x10;	//CTRL1_XL
 	uint8_t reg17 = 0x11;	//CTRL2_G
 	uint8_t reg18 = 0x12;	//CTRL3_C
