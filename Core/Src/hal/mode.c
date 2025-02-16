@@ -166,9 +166,11 @@ void MODE_exe_m0( void )
 			LL_mDelay(1000);
 			GYRO_SetRef();
 			while(1){
-				printf("  gyro%5.2f ref%5.2f \r", 
+				printf("gyro%5.2f ref%5.2f ",
 					GYRO_getNowAngle(),GYRO_getRef()
 				);
+				printf("err %5.2f ",GYRO_getSpeedErr());
+				printf("s_val%x\r",Get_s_gyro());
 				LL_mDelay( 500 );
 			}
 			break;

@@ -30,6 +30,7 @@ void HAL_init( void )
   	ICM_42688_init();
   	ICM_42688_whoami();
 	ICM_42688_whoami();
+	LL_mDelay(30);
 	TIMER_init();
 	SYS_start();
 	MAP_init();

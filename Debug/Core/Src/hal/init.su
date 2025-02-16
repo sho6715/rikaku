@@ -1,2 +1,2 @@
 ../Core/Src/hal/init.c:13:6:HAL_init	8	static
-../Core/Src/hal/init.c:39:6:TIME_init	4	static
+../Core/Src/hal/init.c:41:6:TIME_init	4	static

@@ -76,19 +76,37 @@ void ICM_42688_init(void)
 	ICM_42688_WriteByte(reg28,0x18);
 	LL_mDelay(1);
 */
-
-	uint8_t reg21 = 0x15;	//CTRL6_C
 	uint8_t reg16 = 0x10;	//CTRL1_XL
 	uint8_t reg17 = 0x11;	//CTRL2_G
 	uint8_t reg18 = 0x12;	//CTRL3_C
+	uint8_t reg24 = 0x18;	//CTRL9_XL
+	uint8_t reg19 = 0x13;	//CTRL4_C
+	uint8_t reg23 = 0x17;	//CTRL8_XL
+	uint8_t reg112 = 0x70;	//CTRL1_OIS
 
-//	ICM_42688_WriteByte(reg16,0x84);
-//	LL_mDelay(1);
+
+	ICM_42688_WriteByte(reg18,0x81);
+	LL_mDelay(400);
+	ICM_42688_WriteByte(reg24,0xE2);
+	LL_mDelay(50);
+	ICM_42688_WriteByte(reg19,0x06);
+	LL_mDelay(50);
+	ICM_42688_WriteByte(reg23,0x06);
+	LL_mDelay(50);
+	ICM_42688_WriteByte(reg112,0xA9);
+	LL_mDelay(50);
+	ICM_42688_WriteByte(reg17,0xA1);
+	LL_mDelay(1);
+
+
+/*
+	ICM_42688_WriteByte(reg16,0x84);
+	LL_mDelay(1);
 	ICM_42688_WriteByte(reg17,0x81);
 	LL_mDelay(1);
 	ICM_42688_WriteByte(reg18,0x04);
 	LL_mDelay(1);
-
+*/
 }
 
 void ICM_42688_GyroRead_DMA(uint8_t reg) //reg 29 2A
@@ -104,28 +122,29 @@ void ICM_42688_GyroData(void)
 void GYRO_SetRef( void )
 {
 	uint16_t i;
-	uint32_t ul_ref = 0;
+	int32_t ul_ref = 0;
 
 	/* データサンプリング */
 	for( i=0; i<GYRO_REF_NUM; i++){			// 100回サンプリングした平均値を基準の値とする。
-		ul_ref += (uint32_t)s_GyroVal;
+		ul_ref += (int32_t)s_GyroVal;
 		LL_mDelay(1);
 	}
 
 	/* 基準値算出（平均値） */
-	l_GyroRef = (ul_ref * 100) / GYRO_REF_NUM ;		// 精度を100倍にする
+	l_GyroRef = (int32_t)((ul_ref) / GYRO_REF_NUM) ;		
 }
 
 float GYRO_getSpeedErr( void )
 {
-	int32_t  l_val = (int32_t)s_GyroVal * 100 ;				// 精度を100倍にする
-	int32_t  l_err = l_val - l_GyroRef ;
+	int32_t  l_val = (int32_t)s_GyroVal;				
+	int32_t  l_err = l_val - l_GyroRef;
 	float f_res;
 
 	/* 角速度の偏差算出 */
 //	if( ( l_err < -0.01 * 100 ) || ( 0.01 * 100 < l_err ) ){
-		f_res = (float)l_err /140.0 / 100.0 * DEG_TO_RAD;
-													// 精度を100倍にする
+//		f_res = (float)l_err *140.0  * DEG_TO_RAD;// / 1000.0;
+	f_res = (float)((int32_t)(s_GyroVal *140.0)/1000.0  * DEG_TO_RAD);// / 1000.0;
+													
 //	}
 /*	else{
 		f_res = 0;									// [deg/s]
