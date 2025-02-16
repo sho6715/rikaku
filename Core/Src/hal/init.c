@@ -24,6 +24,7 @@ void HAL_init( void )
   	ADC3_Start();
   	ADC2_Start();
   	ADC1_Start();
+	LL_mDelay(10);
 
   	SPI2_Start();
   	ICM_42688_init();
