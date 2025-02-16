@@ -89,9 +89,6 @@ int main(void)
   /* System interrupt init*/
   NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
 
-  /* SysTick_IRQn interrupt configuration */
-  NVIC_SetPriority(SysTick_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),15, 0));
-
   /** Disable the internal Pull-Up in Dead Battery pins of UCPD peripheral
   */
   LL_PWR_DisableUCPDDeadBattery();
@@ -150,7 +147,7 @@ int main(void)
 	}
 	else if (( SW_IsOn_0() == SW_ON )||(TRUE == MODE_CheckExe())){
 //		else if ( SW_ON == SW_EXE_PIN ){
-		MODE_exe();								// モード�?
+		MODE_exe();								// モード�?
 		LL_mDelay(200);			// SWが離されるまで
 	}
     LL_mDelay(100);
