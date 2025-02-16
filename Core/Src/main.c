@@ -150,7 +150,7 @@ int main(void)
 	}
 	else if (( SW_IsOn_0() == SW_ON )||(TRUE == MODE_CheckExe())){
 //		else if ( SW_ON == SW_EXE_PIN ){
-		MODE_exe();								// モード実
+		MODE_exe();								// モード�?
 		LL_mDelay(200);			// SWが離されるまで
 	}
     LL_mDelay(100);
@@ -174,7 +174,7 @@ void SystemClock_Config(void)
   while(LL_FLASH_GetLatency() != LL_FLASH_LATENCY_4)
   {
   }
-  LL_PWR_SetRegulVoltageScaling(LL_PWR_REGU_VOLTAGE_SCALE1);
+  LL_PWR_EnableRange1BoostMode();
   LL_RCC_HSI_Enable();
    /* Wait till HSI is ready */
   while(LL_RCC_HSI_IsReady() != 1)
@@ -182,8 +182,8 @@ void SystemClock_Config(void)
   }
 
   LL_RCC_HSI_SetCalibTrimming(64);
-  LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSI, LL_RCC_PLLM_DIV_4, 75, LL_RCC_PLLR_DIV_2);
-  LL_RCC_PLL_ConfigDomain_ADC(LL_RCC_PLLSOURCE_HSI, LL_RCC_PLLM_DIV_4, 75, LL_RCC_PLLP_DIV_4);
+  LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSI, LL_RCC_PLLM_DIV_4, 85, LL_RCC_PLLR_DIV_2);
+  LL_RCC_PLL_ConfigDomain_ADC(LL_RCC_PLLSOURCE_HSI, LL_RCC_PLLM_DIV_4, 85, LL_RCC_PLLP_DIV_4);
   LL_RCC_PLL_EnableDomain_SYS();
   LL_RCC_PLL_EnableDomain_ADC();
   LL_RCC_PLL_Enable();
@@ -207,9 +207,9 @@ void SystemClock_Config(void)
   LL_RCC_SetAPB1Prescaler(LL_RCC_APB1_DIV_1);
   LL_RCC_SetAPB2Prescaler(LL_RCC_APB2_DIV_1);
 
-  LL_Init1msTick(150000000);
+  LL_Init1msTick(170000000);
 
-  LL_SetSystemCoreClock(150000000);
+  LL_SetSystemCoreClock(170000000);
 }
 
 /* USER CODE BEGIN 4 */

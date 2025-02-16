@@ -20,7 +20,7 @@
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:1427:22:LL_APB2_GRP1_EnableClock	24	static
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_system.h:1289:22:LL_FLASH_SetLatency	16	static
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_system.h:1317:26:LL_FLASH_GetLatency	4	static
-../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_pwr.h:318:22:LL_PWR_SetRegulVoltageScaling	16	static
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_pwr.h:341:22:LL_PWR_EnableRange1BoostMode	4	static
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_pwr.h:496:22:LL_PWR_DisableUCPDDeadBattery	4	static
 ../Core/Src/main.c:66:6:__io_putchar	16	static
 ../Core/Src/main.c:76:5:main	8	static

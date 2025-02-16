@@ -270,9 +270,17 @@ void TIM1_BRK_TIM15_IRQHandler(void)
 void TIM4_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM4_IRQn 0 */
+	static uint8_t flag =0;
   if ( LL_TIM_IsActiveFlag_UPDATE(TIM4)==1){
 		LL_TIM_ClearFlag_UPDATE(TIM4);
     INTC_sys();
+    if(flag == 0){
+            		flag = 1;
+            		SetLED(0x01);
+            	}else{
+            		flag = 0;
+            		SetLED(0x00);
+            	}
 	}
   /* USER CODE END TIM4_IRQn 0 */
   /* USER CODE BEGIN TIM4_IRQn 1 */
@@ -287,6 +295,8 @@ void TIM6_DAC_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM6_DAC_IRQn 0 */
   static uint8_t i = 0;
+  static uint16_t count = 0;
+  static uint8_t flag =0;
 	if ( LL_TIM_IsActiveFlag_UPDATE(TIM6)==1){
 		LL_TIM_ClearFlag_UPDATE(TIM6);
 	
@@ -301,6 +311,17 @@ void TIM6_DAC_IRQHandler(void)
       case 3:
         ICM_42688_GyroData();
         GYRO_Pol();
+        count++;
+//        if(count>999){
+//        	count = 0;
+        	if(flag == 0){
+        		flag = 1;
+        		SetLED(0x01);
+        	}else{
+        		flag = 0;
+        		SetLED(0x00);
+//        	}
+        }
         break;
     }
     i = (i+1)%4;
@@ -319,6 +340,7 @@ void TIM7_DAC_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM7_DAC_IRQn 0 */
   static uint8_t i = 0;
+
 	if ( LL_TIM_IsActiveFlag_UPDATE(TIM7)==1){
 		LL_TIM_ClearFlag_UPDATE(TIM7);
 	

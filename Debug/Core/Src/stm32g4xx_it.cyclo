@@ -16,6 +16,6 @@
 ../Core/Src/stm32g4xx_it.c:215:6:DMA1_Channel3_IRQHandler	2
 ../Core/Src/stm32g4xx_it.c:234:6:DMA1_Channel4_IRQHandler	2
 ../Core/Src/stm32g4xx_it.c:252:6:TIM1_BRK_TIM15_IRQHandler	2
-../Core/Src/stm32g4xx_it.c:270:6:TIM4_IRQHandler	2
-../Core/Src/stm32g4xx_it.c:286:6:TIM6_DAC_IRQHandler	4
-../Core/Src/stm32g4xx_it.c:318:6:TIM7_DAC_IRQHandler	6
+../Core/Src/stm32g4xx_it.c:270:6:TIM4_IRQHandler	3
+../Core/Src/stm32g4xx_it.c:294:6:TIM6_DAC_IRQHandler	5
+../Core/Src/stm32g4xx_it.c:339:6:TIM7_DAC_IRQHandler	6

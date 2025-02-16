@@ -143,7 +143,7 @@ float GYRO_getSpeedErr( void )
 	/* 角速度の偏差算出 */
 //	if( ( l_err < -0.01 * 100 ) || ( 0.01 * 100 < l_err ) ){
 //		f_res = (float)l_err *140.0  * DEG_TO_RAD;// / 1000.0;
-	f_res = (float)((int32_t)(s_GyroVal *140.0)/1000.0  * DEG_TO_RAD);// / 1000.0;
+	f_res = (float)s_GyroVal/1000.0 *140.0 * DEG_TO_RAD;// / 1000.0;
 													
 //	}
 /*	else{
