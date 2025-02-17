@@ -519,17 +519,17 @@ void Disable_TIM5(void){
 }
 
 void Set_DutyTIM2(uint16_t duty){
-  uint16_t compare = (float)duty/1000.0*1499.0;
-  if(compare>1499){
-    compare = 1499;
+  uint16_t compare = (float)duty/1000.0*1699.0;
+  if(compare>1699){
+    compare = 1699;
   }
   LL_TIM_OC_SetCompareCH2(TIM2,compare);
 }
 
 void Set_DutyTIM3(uint16_t duty){
-  uint16_t compare = (float)duty/1000.0*1499.0;
-  if(compare>1499){
-    compare = 1499;
+  uint16_t compare = (float)duty/1000.0*1699.0;
+  if(compare>1699){
+    compare = 1699;
   }
   LL_TIM_OC_SetCompareCH2(TIM3,compare);
 }
@@ -568,9 +568,9 @@ void Disable_TIM8(void){
 }
 
 void Set_DutyTIM8(uint16_t duty){
-  uint16_t compare = (float)duty/1000.0*1499.0;
-  if(compare>1499){
-    compare = 1499;
+  uint16_t compare = (float)duty/1000.0*1699.0;
+  if(compare>1699){
+    compare = 1699;
   }
   LL_TIM_OC_SetCompareCH3(TIM8,compare);
 }

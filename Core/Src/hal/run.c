@@ -474,7 +474,10 @@ void MOT_setData_ACC_CONST_DEC( float f_num, float f_fin, enMOT_GO_ST_TYPE en_ty
 	f_accTime	= st_Info.f_mot_trgtAcc1/st_Info.f_mot_jerk;
 	st_Info.f_mot_accjerk_v	= 1.0/2.0*st_Info.f_mot_jerk*f_accTime*f_accTime;//加速度到達時の速度
 	st_Info.f_mot_decjerk_v = st_Info.f_mot_accjerk_v;
-	if(abs(f_MotTrgtSpeed - f_MotNowSpeed) < 0.05){
+
+	printf("1 %f,%f\r\n",st_Info.f_mot_accjerk_v,st_Info.f_mot_decjerk_v);
+	printf("1 %f,%f\r\n",f_MotTrgtSpeed,f_MotNowSpeed);
+	if(fabsf(f_MotTrgtSpeed - f_MotNowSpeed) > 0.05){
 		st_Info.f_mot_l1_accjerk	= 1.0/6.0*st_Info.f_mot_jerk*f_accTime*f_accTime*f_accTime + f_MotNowSpeed*f_accTime;//加速度に到達するまでの距離											// 移動距離[m]
 		st_Info.f_mot_l1_decjerk	= 1.0/6.0*st_Info.f_mot_jerk*(-1.0)*f_accTime*f_accTime*f_accTime + (st_Info.f_mot_trgt-st_Info.f_mot_accjerk_v)*f_accTime 
 										+ 1.0/2.0*st_Info.f_mot_trgtAcc1*f_accTime*f_accTime;
@@ -507,6 +510,7 @@ void MOT_setData_ACC_CONST_DEC( float f_num, float f_fin, enMOT_GO_ST_TYPE en_ty
 //	f_l3			= ( f_fin * f_fin - f_MotTrgtSpeed * f_MotTrgtSpeed ) / ( ( st_Info.f_acc3 * -1.0 ) * 2.0 );			// 第3移動距離[m]
 	st_Info.f_mot_l1_2		= st_Info.f_mot_dist - f_l3;											// 第1+2移動距離[m]
 
+	printf("1 %f,%f\r\n",st_Info.f_mot_accjerk_v,st_Info.f_mot_decjerk_v);
 //	printf("1 %f,%f\r",st_Info.f_trgt,st_Info.f_l1);
 }
 
@@ -564,7 +568,7 @@ void MOT_setData_MOT_ACC_CONST_DEC_CUSTOM( float f_num, float f_fin, enMOT_GO_ST
 								( st_Info.f_mot_trgtAcc3 * -1.0 ) * (f_MotNowSpeed+st_Info.f_mot_accjerk_v) * (f_MotNowSpeed+st_Info.f_mot_accjerk_v)
 								 - st_Info.f_mot_trgtAcc1 * (f_fin-st_Info.f_mot_decjerk_v) * (f_fin-st_Info.f_mot_decjerk_v) ) )+st_Info.f_mot_decjerk_v;
 
-	if(abs(f_MotTrgtSpeed - f_MotNowSpeed) < 0.05){
+	if(fabsf(f_MotTrgtSpeed - f_MotNowSpeed) > 0.05){
 		st_Info.f_mot_l1_accjerk	= 1.0/6.0*st_Info.f_mot_jerk*f_accTime*f_accTime*f_accTime + f_MotNowSpeed*f_accTime;//加速度に到達するまでの距離											// 移動距離[m]
 		st_Info.f_mot_l1_decjerk	= 1.0/6.0*st_Info.f_mot_jerk*(-1.0)*f_accTime*f_accTime*f_accTime + (st_Info.f_mot_trgt-st_Info.f_mot_accjerk_v)*f_accTime + 1.0/2.0*st_Info.f_mot_trgtAcc1*f_accTime*f_accTime;
 		st_Info.f_mot_l1_accconst	= ((st_Info.f_mot_trgt-st_Info.f_mot_accjerk_v)*(st_Info.f_mot_trgt-st_Info.f_mot_accjerk_v)
@@ -626,7 +630,7 @@ void MOT_setData_MOT_ACC_CONST( float f_num, float f_fin, enMOT_GO_ST_TYPE en_ty
 
 	f_accTime   = st_Info.f_mot_trgtAcc1/st_Info.f_mot_jerk;
 	st_Info.f_mot_accjerk_v  	= 1.0/2.0*st_Info.f_mot_jerk*f_accTime*f_accTime;//加速度到達時の速度
-    if(abs(f_MotTrgtSpeed - f_MotNowSpeed) < 0.05){
+    if(fabsf(f_MotTrgtSpeed - f_MotNowSpeed) > 0.05){
 		st_Info.f_mot_l1_accjerk    = 1.0/6.0*st_Info.f_mot_jerk*f_accTime*f_accTime*f_accTime + f_MotNowSpeed*f_accTime;//加速度に到達するまでの距離                                          // 移動距離[m]
 		st_Info.f_mot_l1_decjerk    = 1.0/6.0*st_Info.f_mot_jerk*(-1.0)*f_accTime*f_accTime*f_accTime + (st_Info.f_mot_trgt-st_Info.f_mot_accjerk_v)*f_accTime + 1.0/2.0*st_Info.f_mot_trgtAcc1*f_accTime*f_accTime;
 		st_Info.f_mot_l1_accconst   = ((f_MotTrgtSpeed-st_Info.f_mot_accjerk_v)*(f_MotTrgtSpeed-st_Info.f_mot_accjerk_v)
@@ -680,7 +684,7 @@ void MOT_setData_MOT_ACC_CONST_CUSTOM( float f_num, float f_fin, enMOT_GO_ST_TYP
 	f_accTime					= st_Info.f_mot_trgtAcc1/st_Info.f_mot_jerk;
 
 	st_Info.f_mot_accjerk_v		= 1.0/2.0*st_Info.f_mot_jerk*f_accTime*f_accTime;//加速度到達時の速度
-	if(abs(f_MotTrgtSpeed - f_MotNowSpeed) < 0.05){
+	if(fabsf(f_MotTrgtSpeed - f_MotNowSpeed) > 0.05){
 		st_Info.f_mot_l1_accjerk	= 1.0/6.0*st_Info.f_mot_jerk*f_accTime*f_accTime*f_accTime + f_MotNowSpeed*f_accTime;//加速度に到達するまでの距離		// 移動距離[m]
 		st_Info.f_mot_l1_decjerk	= 1.0/6.0*st_Info.f_mot_jerk*(-1.0)*f_accTime*f_accTime*f_accTime + (st_Info.f_mot_trgt-st_Info.f_mot_accjerk_v)*f_accTime + 1.0/2.0*st_Info.f_mot_trgtAcc1*f_accTime*f_accTime;
 		st_Info.f_mot_l1_accconst	= ((f_MotTrgtSpeed-st_Info.f_mot_accjerk_v)*(f_MotTrgtSpeed-st_Info.f_mot_accjerk_v)
@@ -846,6 +850,8 @@ enMOT_ST_TYPE MOT_getStType( float f_num, float f_fin, enMOT_GO_ST_TYPE en_type 
 							/( f_acc1 * 2.0 );
 	f_l1	= f_l_acc_accJerk + f_l_acc_decJerk + f_l_acc_accConst;
 
+//	printf("1, %f ,2, %f ,3, %f\n\r",f_l_acc_accJerk,f_l_acc_accConst,f_l_acc_decJerk);
+//	printf("l, %f\r\n",f_l1);
 	/*  加速＋等速動作 */
 	if( f_total <= ( f_l1 + MOT_MOVE_ST_THRESHOLD ) ){
 
@@ -879,6 +885,8 @@ enMOT_ST_TYPE MOT_getStType( float f_num, float f_fin, enMOT_GO_ST_TYPE en_type 
 	
 	f_l3	= f_l_acc_decJerk + f_l_acc_accJerk + f_l_acc_accConst;
 
+//	printf("1, %f ,2, %f ,3, %f\n\r",f_l_acc_accJerk,f_l_acc_accConst,f_l_acc_decJerk);
+//	printf("l, %f\r\n",f_l3);
 	/* 等速＋減速動作 */
 	if( f_total <= ( f_l3 + MOT_MOVE_ST_THRESHOLD ) ){
 
@@ -916,6 +924,9 @@ enMOT_ST_TYPE MOT_getStType( float f_num, float f_fin, enMOT_GO_ST_TYPE en_type 
 
 	f_l1	= f_l_acc_accJerk + f_l_acc_decJerk + f_l_acc_accConst;
 
+//	printf("1, %f ,2, %f ,3, %f\n\r",f_l_acc_accJerk,f_l_acc_accConst,f_l_acc_decJerk);
+//	printf("l, %f\r\n",f_l1);
+
 	f_accTime			= f_acc3/f_Jerk;
 	f_v_accJerk			= 1.0/2.0*f_Jerk*f_accTime*f_accTime;
 	f_l_acc_decJerk		= 1.0/6.0*st_Info.f_mot_jerk*(-1.0)*f_accTime*f_accTime*f_accTime + f_MotTrgtSpeed*f_accTime;
@@ -925,6 +936,9 @@ enMOT_ST_TYPE MOT_getStType( float f_num, float f_fin, enMOT_GO_ST_TYPE en_type 
 							/( f_acc3 * 2.0 * (-1.0));
 	
 	f_l3	= f_l_acc_decJerk + f_l_acc_accJerk + f_l_acc_accConst;
+
+//	printf("1, %f ,2, %f ,3, %f\n\r",f_l_acc_accJerk,f_l_acc_accConst,f_l_acc_decJerk);
+//	printf("l, %f\r\n",f_l3);
 
 	/* 通常の台形動作 */
 	if( ( f_total - f_l1 - f_l3 - MOT_MOVE_ST_MIN) >= 0 ){

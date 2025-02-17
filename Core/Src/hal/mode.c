@@ -223,6 +223,9 @@ void MODE_exe_m0( void )
 			PARAM_setSpeedType( PARAM_TRUN, PARAM_VERY_SLOW );							// [旋回] 速度普�?
 			PARAM_setSpeedType( PARAM_SLA,  PARAM_VERY_SLOW );							// [スラ] 速度普�?
 */
+//			printf("mode %d\n\r",MOT_getStType( 2.0, 0.0, MOT_GO_ST_NORMAL));
+//			MOT_getStType( 2.0, 0.0, MOT_GO_ST_NORMAL );
+
 			SetLED(0x00);
 			LL_mDelay(500);
 			CTRL_clrData();
@@ -230,8 +233,10 @@ void MODE_exe_m0( void )
 			CTRL_clrSpeedErrSum();
 			CTRL_clrNowData();
 			log_flag_on();
-/*			MOT_goBlock_FinSpeed(0.5, SEARCH_SPEED);
-			MOT_goBlock_Const(1);
+			LL_mDelay(10);
+/*
+			MOT_goBlock_FinSpeed(0.5, SEARCH_SPEED);
+//			MOT_goBlock_Const(1);
 			MOT_goSla(MOT_R90S, PARAM_getSra( SLA_90 ));
 			MOT_goBlock_FinSpeed(0.5, 0);
 */
@@ -248,9 +253,11 @@ void MODE_exe_m0( void )
 			MOT_turn(MOT_L90);
 			LL_mDelay(500);
 */
-			MOT_setTrgtSpeed(SEARCH_SPEED/4.0);		// 目標速度
-			MOT_goBlock_FinSpeed(0.2,0);
+
+//			MOT_setTrgtSpeed(SEARCH_SPEED/4.0);		// 目標速度
+			MOT_goBlock_FinSpeed(2.0,0);
 			MOT_setTrgtSpeed(SEARCH_SPEED);		// 目標速度
+
 			log_flag_off();
 			break;
 

@@ -151,9 +151,9 @@ int main(void)
 		LL_mDelay(200);			// SWが離されるまで
 	}
     LL_mDelay(100);
-//  Get_Sen_Nowdata();
+  Get_Sen_Nowdata();
 //  printf("batt %5.2f \r",get_battLv());
-  printf("s_val%x\n\r",Get_s_gyro());
+//  printf("s_val%x\n\r",Get_s_gyro());
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

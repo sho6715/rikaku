@@ -1070,12 +1070,12 @@ void CTRL_outMot( float f_duty10_R, float f_duty10_L )
 
 	/* 右モータ */
 	if( 60 < f_duty10_R ){									// 前進
-		DCM_setDirCw( DCM_R );
+		DCM_setDirCcw( DCM_R );
 		DCM_setPwmDuty( DCM_R, (uint16_t)f_duty10_R );
 	}
-	else if( f_duty10_R < -60 ){							// 後退
+	else if( f_duty10_R < -20 ){							// 後退
 		f_temp = f_duty10_R * -1.0;
-		DCM_setDirCcw( DCM_R );
+		DCM_setDirCw( DCM_R );
 		DCM_setPwmDuty( DCM_R, (uint16_t)f_temp );
 	}
 	else{
@@ -1087,7 +1087,7 @@ void CTRL_outMot( float f_duty10_R, float f_duty10_L )
 		DCM_setDirCw( DCM_L );
 		DCM_setPwmDuty( DCM_L, (uint16_t)f_duty10_L );
 	}
-	else if( f_duty10_L < -60 ){							// 後退
+	else if( f_duty10_L < -20 ){							// 後退
 		f_temp = f_duty10_L * -1.0;
 		DCM_setDirCcw( DCM_L );
 		DCM_setPwmDuty( DCM_L, (uint16_t)f_temp );
