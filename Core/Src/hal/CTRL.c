@@ -280,8 +280,8 @@ void CTRL_refNow( void )
 	f_NowSpeed  = ( f_speedR + f_speedL ) / 2;			// マウス（進行方向中心軸） [1mm/s] 
 	
 	/*motor AngleS*/
-	f_MotorR_AngleS	= f_speedR /(PI*TIRE_D)*GEAR_RATIO;
-	f_MotorL_AngleS = f_speedL /(PI*TIRE_D)*GEAR_RATIO;
+	f_MotorR_AngleS	= f_speedR *GEAR_RATIO*2.0/TIRE_D;
+	f_MotorL_AngleS = f_speedL *GEAR_RATIO*2.0/TIRE_D;
 
 	/* 距離更新 */
 	f_NowDistR += f_r;									// カウント更新
@@ -1222,8 +1222,8 @@ void CTRL_pol( void )
 			Il = (TL+0.0255/1000.0)/TORQUE_CONSTANT;
 		}
 	}
-	f_duty10_R = FF_BALANCE_R*(MOTOR_REGISTER*Ir+f_MotorR_AngleS*0.062/1000.0/60.0)/get_battLv();	
-	f_duty10_L = FF_BALANCE_L*(MOTOR_REGISTER*Il+f_MotorL_AngleS*0.062/1000.0/60.0)/get_battLv();	
+	f_duty10_R = FF_BALANCE_R*(MOTOR_REGISTER*Ir+f_MotorR_AngleS*60.0/(2.0*PI)* TORQUE_CONSTANT*(PI*2.0)/60.0)/get_battLv();	
+	f_duty10_L = FF_BALANCE_L*(MOTOR_REGISTER*Il+f_MotorL_AngleS*60.0/(2.0*PI)* TORQUE_CONSTANT*(PI*2.0)/60.0)/get_battLv();	
 
 	if(f_duty10_R>1){
 		f_duty10_R = 1.0;
@@ -1241,9 +1241,9 @@ void CTRL_pol( void )
 	Duty_L = f_duty10_L;
 	Duty_R = f_duty10_R;
 
-	TempLog1 = f_TrgtSpeed;//f_AngleSErrSum;//TR;//f_floorfriction;//f_duty10_R;
-	TempLog2 = f_TrgtAcc;//f_angleSpeedCtrl;//TL;//f_duty10_L;
-	TempLog3 = f_Jerk;//f_floorfriction;//f_feedFoard_angle*(-1.0);
+	TempLog1 = TL*1000.0;//f_AngleSErrSum;//TR;//f_floorfriction;//f_duty10_R;
+	TempLog2 = Il;//f_angleSpeedCtrl;//TL;//f_duty10_L;
+	TempLog3 = f_speedCtrl;//f_floorfriction;//f_feedFoard_angle*(-1.0);
 	TempLog4 = f_duty10_L;//f_floorfriction;//INERTIA*(f_feedFoard_angle*(-1.0) + f_angleSpeedCtrl+f_angleCtrl)+f_floorfriction * 1000000.0;
 
 	EscapeWait = EscapeWait+0.001;

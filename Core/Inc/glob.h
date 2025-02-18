@@ -32,17 +32,17 @@
 
 #define VCC_MAX						( 4.2f )							
 #define TIRE_D						( 0.01257f )	
-#define TREAD_IMAGIN					(0.0386f)
-#define TREAD						( 0.0335f )
+#define TREAD_IMAGIN					(0.037f)
+#define TREAD						( 0.035f )
 #define ROTATE_PULSE				( 4096 )									
 #define DIST_1STEP					( PI * TIRE_D / ROTATE_PULSE )			
 #define F_CNT2MM(cnt)				( (float)cnt * DIST_1STEP )				
 #define GEAR_RATIO					(37.0f/8.0f)
 
-#define WEIGHT						(0.018f)
+#define WEIGHT						(0.0214f)
 #define INERTIA						(4.6f/100000.0f)
-#define TORQUE_CONSTANT				(0.594f/1000.0f)
-#define MOTOR_REGISTER				(4.8f)
+#define TORQUE_CONSTANT				(0.41f/1000.0f)
+#define MOTOR_REGISTER				(2.3f)
 
 #define DEG_TO_RAD  (3.1416f/180.0f)
 #define RAD_TO_DEG  (180.0f/3.1416f)
