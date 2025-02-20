@@ -247,17 +247,17 @@ void MODE_exe_m0( void )
 			MOT_goSla(MOT_R135S_N2S,PARAM_getSra( SLA_135 ));
 			MOT_goBlock_FinSpeed(0.5, 0);
 */
-/*
+
 			MOT_turn(MOT_R90);
 			LL_mDelay(500);
 			MOT_turn(MOT_L90);
 			LL_mDelay(500);
-*/
 
+/*
 //			MOT_setTrgtSpeed(SEARCH_SPEED/4.0);		// 目標速度
 			MOT_goBlock_FinSpeed(2.0,0);
 			MOT_setTrgtSpeed(SEARCH_SPEED);		// 目標速度
-
+*/
 			log_flag_off();
 			break;
 
