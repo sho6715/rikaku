@@ -745,8 +745,8 @@ void CTRL_getSpeedFB( float* p_err )
 	f_kd = PARAM_getGain(Chg_ParamID(en_Type))->f_FB_speed_kd;
 	/* I成分演算 */
 	f_SpeedErrSum += f_speedErr;// * f_ki;			// I成分更新
-	if( f_SpeedErrSum > 1000.0 ){
-		f_SpeedErrSum = 1000.0;			// 上限リミッター
+	if( f_SpeedErrSum > 100.0 ){
+		f_SpeedErrSum = 100.0;			// 上限リミッター
 	}
 
 	*p_err = f_speedErr * f_kp + f_SpeedErrSum* f_ki + ( f_speedErr - f_ErrSpeedBuf ) * f_kd;				// PI制御量算出
@@ -777,11 +777,11 @@ void CTRL_getAngleSpeedFB( float* p_err )
 
 	f_AngleSErrSum += f_err;//*f_ki;
 
-	if(f_AngleSErrSum > 200.0){
-		f_AngleSErrSum = 200.0;			//上限リミッター
+	if(f_AngleSErrSum > 50.0){
+		f_AngleSErrSum = 50.0;			//上限リミッター
 	}
-	else if(f_AngleSErrSum <-200.0){
-		f_AngleSErrSum = -200.0;
+	else if(f_AngleSErrSum <-50.0){
+		f_AngleSErrSum = -50.0;
 	}
 
 	*p_err = f_err * f_kp + f_AngleSErrSum*f_ki + ( f_err - f_ErrAngleSBuf ) * f_kd;		// PID制御
@@ -1184,17 +1184,17 @@ void CTRL_pol( void )
 	else if( ( en_Type == CTRL_ACC_SLA ) || (en_Type == CTRL_CONST_SLA)||( en_Type == CTRL_DEC_SLA ) ){
 		/* 左旋回 */
 		if( f_LastAngle > 0 ){
-			TR = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.01)+(TIRE_D/2.0/TREAD)*(4.6/1000000.0*(f_feedFoard_angle + f_angleSpeedCtrl+f_angleCtrl)/*+f_floorfriction*/))/GEAR_RATIO;
-			TL = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.01)-(TIRE_D/2.0/TREAD)*(4.6/1000000.0*(f_feedFoard_angle + f_angleSpeedCtrl+f_angleCtrl)/*+f_floorfriction*/))/GEAR_RATIO;
-			Ir = (TR/*+0.0255/1000.0*/)/TORQUE_CONSTANT;
-			Il = (TL/*+0.0255/1000.0*/)/TORQUE_CONSTANT;
+			TR = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.0)+(TIRE_D/2.0/TREAD)*(INERTIA*(f_feedFoard_angle + f_angleSpeedCtrl+f_angleCtrl)/*+f_floorfriction*/))/GEAR_RATIO;
+			TL = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.0)-(TIRE_D/2.0/TREAD)*(INERTIA*(f_feedFoard_angle + f_angleSpeedCtrl+f_angleCtrl)/*+f_floorfriction*/))/GEAR_RATIO;
+			Ir = (TR+0.01/1000.0)/TORQUE_CONSTANT;
+			Il = (TL-0.01/1000.0)/TORQUE_CONSTANT;
 		}
 		/*右旋回 */
 		else{			
-			TR = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.01)+(TIRE_D/2.0/TREAD)*(4.6/1000000.0*(f_feedFoard_angle*(-1.0) + f_angleSpeedCtrl+f_angleCtrl)/*+f_floorfriction*/))/GEAR_RATIO;
-			TL = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.01)-(TIRE_D/2.0/TREAD)*(4.6/1000000.0*(f_feedFoard_angle*(-1.0) + f_angleSpeedCtrl+f_angleCtrl)/*+f_floorfriction*/))/GEAR_RATIO;
-			Ir = (TR/*+0.0255/1000.0*/)/TORQUE_CONSTANT;
-			Il = (TL/*+0.0255/1000.0*/)/TORQUE_CONSTANT;
+			TR = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.0)+(TIRE_D/2.0/TREAD)*(INERTIA*(f_feedFoard_angle*(-1.0) + f_angleSpeedCtrl+f_angleCtrl)/*+f_floorfriction*/))/GEAR_RATIO;
+			TL = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.0)-(TIRE_D/2.0/TREAD)*(INERTIA*(f_feedFoard_angle*(-1.0) + f_angleSpeedCtrl+f_angleCtrl)/*+f_floorfriction*/))/GEAR_RATIO;
+			Ir = (TR-0.01/1000.0)/TORQUE_CONSTANT;
+			Il = (TL+0.01/1000.0)/TORQUE_CONSTANT;
 		}
 	}
 
@@ -1244,7 +1244,7 @@ void CTRL_pol( void )
 	TempLog1 = TL*1000.0;//f_AngleSErrSum;//TR;//f_floorfriction;//f_duty10_R;
 	TempLog2 = f_feedFoard_angle;//f_angleSpeedCtrl;//TL;//f_duty10_L;
 	TempLog3 = f_angleSpeedCtrl;//f_floorfriction;//f_feedFoard_angle*(-1.0);
-	TempLog4 = f_duty10_L;//f_floorfriction;//INERTIA*(f_feedFoard_angle*(-1.0) + f_angleSpeedCtrl+f_angleCtrl)+f_floorfriction * 1000000.0;
+	TempLog4 = f_TrgtAccAngle;//f_floorfriction;//INERTIA*(f_feedFoard_angle*(-1.0) + f_angleSpeedCtrl+f_angleCtrl)+f_floorfriction * 1000000.0;
 
 	EscapeWait = EscapeWait+0.001;
 	CTRL_outMot( f_duty10_R, f_duty10_L );				// モータへ出力

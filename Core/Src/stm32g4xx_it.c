@@ -255,7 +255,7 @@ void TIM1_BRK_TIM15_IRQHandler(void)
   if ( LL_TIM_IsActiveFlag_UPDATE(TIM15)==1){
 		LL_TIM_ClearFlag_UPDATE(TIM15);
     BAT_Pol();
-	  log_interrupt ();
+//	  log_interrupt ();
 	}
   /* USER CODE END TIM1_BRK_TIM15_IRQn 0 */
 
@@ -273,6 +273,7 @@ void TIM4_IRQHandler(void)
   if ( LL_TIM_IsActiveFlag_UPDATE(TIM4)==1){
 		LL_TIM_ClearFlag_UPDATE(TIM4);
     INTC_sys();
+    log_interrupt ();
   }
   /* USER CODE END TIM4_IRQn 0 */
   /* USER CODE BEGIN TIM4_IRQn 1 */
