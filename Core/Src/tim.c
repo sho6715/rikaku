@@ -479,7 +479,7 @@ void TIMER_init(void)
   LL_TIM_EnableCounter(TIM3);
   //fan
   LL_TIM_EnableAllOutputs(TIM8);
-  LL_TIM_CC_EnableChannel(TIM8, LL_TIM_CHANNEL_CH3);
+  LL_TIM_CC_EnableChannel(TIM8, LL_TIM_CHANNEL_CH1);
   LL_TIM_EnableCounter(TIM8);
   //ctrl
   LL_TIM_EnableIT_UPDATE(TIM4);
@@ -572,7 +572,7 @@ void Set_DutyTIM8(uint16_t duty){
   if(compare>1699){
     compare = 1699;
   }
-  LL_TIM_OC_SetCompareCH3(TIM8,compare);
+  LL_TIM_OC_SetCompareCH1(TIM8,compare);
 }
 
 uint16_t Get_CounterTIM1(void){

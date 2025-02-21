@@ -11,7 +11,7 @@
 #define MAP_SMAP_MAX_VAL	( MAP_X_SIZE * MAP_Y_SIZE ) 			///< 等高線mapの最大値
 #define MAP_SMAP_MAX_PRI_VAL	( MAP_SMAP_MAX_VAL * 4 )				///< 等高線mapの優先度最大値
 
-#define MOVE_BACK_DIST		(0.23f)
+#define MOVE_BACK_DIST		(0.215f)
 
 extern uint8_t WallHitFlag;
 

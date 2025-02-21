@@ -196,7 +196,7 @@ void MODE_exe_m0( void )
 		case MODE_3:
 			SetLED(0x0e);
 			log_flag_on();
-
+/*
 			DCM_setDirCcw( DCM_R );
 			DCM_setPwmDuty( DCM_R, 280 );
 			DCM_setDirCw( DCM_L );
@@ -205,7 +205,10 @@ void MODE_exe_m0( void )
 			LL_mDelay(2000);
 			DCM_setPwmDuty( DCM_R, 0 );
 			DCM_setPwmDuty( DCM_L, 0 );
-
+*/
+			
+			Set_DutyTIM8(600);
+			LL_mDelay(10000);
 			log_flag_off();
 			SetLED(0x0e);
 			break;
@@ -234,12 +237,12 @@ void MODE_exe_m0( void )
 			CTRL_clrNowData();
 			log_flag_on();
 			LL_mDelay(10);
-
+/*
 			MOT_goBlock_FinSpeed(0.5, SEARCH_SPEED);
 //			MOT_goBlock_Const(1);
 			MOT_goSla(MOT_R90S, PARAM_getSra( SLA_90 ));
 			MOT_goBlock_FinSpeed(0.5, 0);
-
+*/
 /*
 			MOT_goBlock_FinSpeed(0.5,SEARCH_SPEED);
 			MOT_goSla(MOT_L45S_S2N,PARAM_getSra( SLA_45 ));
@@ -247,15 +250,15 @@ void MODE_exe_m0( void )
 			MOT_goSla(MOT_R135S_N2S,PARAM_getSra( SLA_135 ));
 			MOT_goBlock_FinSpeed(0.5, 0);
 */
-/*
+
 			MOT_turn(MOT_R90);
 			LL_mDelay(500);
 			MOT_turn(MOT_L90);
 			LL_mDelay(500);
-*/
+
 /*
 //			MOT_setTrgtSpeed(SEARCH_SPEED/4.0);		// 目標速度
-			MOT_goBlock_FinSpeed(2.0,0);
+			MOT_goBlock_FinSpeed(6.0,0);
 			MOT_setTrgtSpeed(SEARCH_SPEED);		// 目標速度
 */
 			log_flag_off();

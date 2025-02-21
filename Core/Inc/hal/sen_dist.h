@@ -23,22 +23,22 @@
 #define DIST_NO_WALL_DIV_FILTER				( 25 )
 #define DIST_REF_UP					( 35 )
 
-#define R_FRONT_REF					(720)
-#define L_FRONT_REF					(750)//( 210 )
-#define R_SIDE_REF					(330)//( 240 )
-#define L_SIDE_REF					(300)//( 200 )
-#define R_FRONT_WALL					(85)//( 45 )
-#define L_FRONT_WALL					(95)//( 45 )
-#define R_SIDE_WALL					(110)//( 110 )
-#define L_SIDE_WALL					(130)//( 70 )
+#define R_FRONT_REF					(985)
+#define L_FRONT_REF					(643)//( 210 )
+#define R_SIDE_REF					(260)//( 240 )
+#define L_SIDE_REF					(384)//( 200 )
+#define R_FRONT_WALL					(110)//( 45 )
+#define L_FRONT_WALL					(90)//( 45 )
+#define R_SIDE_WALL					(95)//( 110 )
+#define L_SIDE_WALL					(135)//( 70 )
 #define R_FRONT_SKEW_ERR1				( 80 )//仮
 #define L_FRONT_SKEW_ERR1				( 70 )
 #define R_FRONT_SKEW_ERR2				( 192 )
 #define L_FRONT_SKEW_ERR2				( 160 )
 #define R_FRONT_SKEW_ERR3				( 250 )
 #define L_FRONT_SKEW_ERR3				( 250 )
-#define R_FRONT_CTRL					(160)//( 370 )	//maekabehoseiniryuuyou
-#define L_FRONT_CTRL					(200)//( 300 )
+#define R_FRONT_CTRL					(188)//( 370 )	//maekabehoseiniryuuyou
+#define L_FRONT_CTRL					(158)//( 300 )
 #define R_FRONT_NOCTRL					(1000)//( 530 )
 #define L_FRONT_NOCTRL					(1200)//( 450 )
 

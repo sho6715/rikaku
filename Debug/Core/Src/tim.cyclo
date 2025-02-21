@@ -14,8 +14,8 @@
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_tim.h:2604:22:LL_TIM_CC_EnableChannel	1
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_tim.h:2993:22:LL_TIM_OC_DisableFast	10
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_tim.h:3045:22:LL_TIM_OC_EnablePreload	10
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_tim.h:3217:22:LL_TIM_OC_SetCompareCH1	1
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_tim.h:3235:22:LL_TIM_OC_SetCompareCH2	1
-../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_tim.h:3253:22:LL_TIM_OC_SetCompareCH3	1
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_tim.h:3567:22:LL_TIM_IC_SetActiveInput	10
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_tim.h:3617:22:LL_TIM_IC_SetPrescaler	10
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_tim.h:3680:22:LL_TIM_IC_SetFilter	10
