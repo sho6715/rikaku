@@ -258,7 +258,7 @@ void MODE_exe_m0( void )
 */
 /*
 //			MOT_setTrgtSpeed(SEARCH_SPEED/4.0);		// 目標速度
-			MOT_goBlock_FinSpeed(6.0,0);
+			MOT_goBlock_FinSpeed(2.0,0);
 			MOT_setTrgtSpeed(SEARCH_SPEED);		// 目標速度
 */
 			log_flag_off();

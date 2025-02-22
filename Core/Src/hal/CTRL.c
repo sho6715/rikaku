@@ -1168,8 +1168,8 @@ void CTRL_pol( void )
 	){
 		TR = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.0)+(TIRE_D/2.0/TREAD)*(INERTIA*(f_feedFoard_angle + f_angleSpeedCtrl+ f_distSenCtrl)))/GEAR_RATIO;
 		TL = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.0)-(TIRE_D/2.0/TREAD)*(INERTIA*(f_feedFoard_angle + f_angleSpeedCtrl+ f_distSenCtrl)))/GEAR_RATIO;
-		Ir = (TR+0.0/1000.0)/TORQUE_CONSTANT;
-		Il = (TL+0.0/1000.0)/TORQUE_CONSTANT;
+		Ir = (TR+0.006/1000.0)/TORQUE_CONSTANT;
+		Il = (TL+0.006/1000.0)/TORQUE_CONSTANT;
 	}
 
 	/* 壁あて制御 */

@@ -300,6 +300,7 @@ void MOT_goBlock_AccConstDec( float f_fin, enMOT_ST_TYPE en_type, enMOT_GO_ST_TY
 				break;
 			}				
 			MOT_setWallEdgeDist();
+			
 
 		}
 
@@ -328,6 +329,8 @@ void MOT_goBlock_AccConstDec( float f_fin, enMOT_ST_TYPE en_type, enMOT_GO_ST_TY
 				break;
 			}				
 			MOT_setWallEdgeDist();
+
+			if((EscapeWait>2.0)&&(SearchFlag == TRUE))break;
 
 		}
 
