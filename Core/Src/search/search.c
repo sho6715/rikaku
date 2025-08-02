@@ -2108,3 +2108,7 @@ void  MAP_makeContourMap_dijkstra_modoki(
 
 }
 
+void dijkstra_fast(int x, int y){
+
+	
+}
