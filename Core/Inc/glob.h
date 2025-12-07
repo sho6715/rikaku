@@ -20,8 +20,8 @@
 /* ăăŻă­ */
 #define FABS(x)						( (x)>=0 ? (x) : -(x) )
 
-#define GOAL_MAP_X_DEF					( 20 )//2				
-#define GOAL_MAP_Y_DEF					( 9 )//11				
+#define GOAL_MAP_X_DEF					( 7 )//2
+#define GOAL_MAP_Y_DEF					( 7 )//11
 #define MAP_X_SIZE					( 32 )				
 #define MAP_Y_SIZE					( 32 )				
 

@@ -29,7 +29,7 @@
 #define SEARCH_SPEED				(0.3)
 #define MAP_KNOWN_ACC_SPEED			(0.5)
 
-#define MOT_WALL_EDGE_DIST			( 0.0305f )//28
+#define MOT_WALL_EDGE_DIST			( 0.035f )//28
 /*
 #define 	f_FB_speed_kp		(35.0)//35
 #define 	f_FB_speed_ki		(2.0)//4

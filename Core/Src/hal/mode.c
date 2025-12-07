@@ -922,8 +922,10 @@ void MODE_exe_m3( void )
 			MAP_makeSkewCmdList();													
 			LL_mDelay(500);
 			Set_DutyTIM8(600);
-			LL_mDelay(2000);													
+			LL_mDelay(2000);		
+			log_flag_on();											
 			MAP_drive( MAP_DRIVE_SKEW );
+			log_flag_off();
 			Set_DutyTIM8(0);
 			LL_mDelay(500);
 			MOT_turn(MOT_R180);

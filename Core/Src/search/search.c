@@ -703,7 +703,96 @@ void  MAP_makeContourMap_run( //初期型のフルマップ生成　最短用に
 	while( uc_level != 0 );
 	
 }
+/*
+void  MAP_makeContourMap_queue_All(//queue_allsection
+	uint8_t uc_goalX, 			///< [in] ゴールX座標
+	uint8_t uc_goalY, 			///< [in] ゴールY座標
+) {
+	uint16_t		x, y, i;		// ループ変数
+	uint16_t		uc_dase;		// 基準値
+	uint16_t		uc_new;			// 新値
+	uint16_t		uc_level;		// 等高線
+	uint8_t		uc_wallData;	// 壁情報
 
+	stPOSITION		st_pos;
+
+	bool	b_arrival_pos;
+
+	queue_t queue;
+	queue_t* pQueue = &queue;
+
+	InitQueue(pQueue);
+
+	// 等高線マップを初期化する
+	for (i = 0; i < MAP_SMAP_MAX_VAL; i++) {
+		if(){
+			us_Cmap[i / MAP_Y_SIZE][i & (MAP_X_SIZE - 1)] = 0;
+			st_pos.x = i & (MAP_X_SIZE - 1);
+			st_pos.y = i / MAP_Y_SIZE;
+			st_pos.step = 0;
+
+			EnQueue(pQueue,st_pos);
+		}else{
+			us_Cmap[i / MAP_Y_SIZE][i & (MAP_X_SIZE - 1)] = MAP_SMAP_MAX_VAL - 1;
+		}
+	}
+
+//	std::queue<stPOSITION> q;
+//	QueryPerformanceCounter(&start);
+
+	// 目標地点の等高線を0に設定
+
+	// 等高線マップを作成
+	while (pQueue->flag != EMPTY) {
+		const stPOSITION focus = DeQueue(pQueue);
+//		q.pop();
+		const uint16_t focus_step = focus.step;
+		x = focus.x;
+		y = focus.y;
+		stPOSITION next = focus;
+		uc_wallData = g_SysMap[y][x];
+
+		if (((uc_wallData & 0x01) == 0x00) && (y != (MAP_Y_SIZE - 1))) {
+			if (us_Cmap[y + 1][x] > focus_step + 1) {
+				next.step = focus_step + 1;
+				us_Cmap[y + 1][x] = focus_step + 1;
+				next.x = x;
+				next.y = y + 1;
+				EnQueue(pQueue,next);
+			}
+		}
+		if (((uc_wallData & 0x02) == 0x00) && (x != (MAP_X_SIZE - 1))) {
+			if (us_Cmap[y][x + 1] > focus_step + 1) {
+				next.step = focus_step + 1;
+				us_Cmap[y][x + 1] = focus_step + 1;
+				next.x = x + 1;
+				next.y = y;
+				EnQueue(pQueue, next);
+			}
+		}
+		if (((uc_wallData & 0x04) == 0x00) && (y != 0)) {
+			if (us_Cmap[y - 1][x] > focus_step + 1) {
+				next.step = focus_step + 1;
+				us_Cmap[y - 1][x] = focus_step + 1;
+				next.x = x;
+				next.y = y - 1;
+				EnQueue(pQueue, next);
+			}
+		}
+		if (((uc_wallData & 0x08) == 0x00) && (x != 0)) {
+			if (us_Cmap[y][x - 1] > focus_step + 1) {
+				next.step = focus_step + 1;
+				us_Cmap[y][x - 1] = focus_step + 1;
+				next.x = x - 1;
+				next.y = y;
+				EnQueue(pQueue, next);
+			}
+		}
+
+	}
+
+}
+*/
 void MAP_calcMouseDir( 
 	enMAP_SEARCH_TYPE	en_calcType,	///< [in] 計算方法
 	enMAP_HEAD_DIR* 	p_head			///< [out] 進行方向（戻り値）
@@ -1248,7 +1337,7 @@ void MAP_moveNextBlock_acc(enMAP_HEAD_DIR en_head, bool* p_type)
 					( ( en_Head == SOUTH ) && ( ( g_SysMap[my][mx] & 0x08 ) != 0 ) )  ||		// 南を向いていて西に壁がある
 					( ( en_Head == WEST  ) && ( ( g_SysMap[my][mx] & 0x01 ) != 0 ) ) 			// 西を向いていて北に壁がある
 			){
-			uc_DistControl = 0.02;
+			uc_DistControl = 0.01;
 			}
 		else{
 			uc_DistControl = 0;
@@ -1322,7 +1411,7 @@ void MAP_moveNextBlock_acc(enMAP_HEAD_DIR en_head, bool* p_type)
 					( ( en_Head == SOUTH ) && ( ( g_SysMap[my][mx] & 0x02 ) != 0 ) )  ||		// 南を向いていて東に壁がある
 					( ( en_Head == WEST  ) && ( ( g_SysMap[my][mx] & 0x04 ) != 0 ) ) 			// 西を向いていて南に壁がある
 			){
-			uc_DistControl = 0.02;
+			uc_DistControl = 0.01;
 			}
 		else{
 			uc_DistControl = 0;
