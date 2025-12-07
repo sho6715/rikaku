@@ -194,13 +194,13 @@ void CTRL_clrNowData(void)
 	l_CntL			= 0;						// カウンタクリア
 
 	/* 現在値 */
-	f_NowDist 		= 0;						// 移動距離リセット
 	f_NowDistR 		= 0;
 	f_NowDistL 		= 0;
-	f_NowSpeed		= 0;						// [速度制御]   現在の速度 [mm/s]			（1[msec]毎に更新される）
-	f_NowAngle		= 0;						// [角度制御]   現在角度					（1[msec]毎に更新される）
+	f_NowDist 		= 0;						// 移動距離リセット
+	f_NowSpeed		= 0;						// [速度制御]   現在の速度 [mm/s]					（1[msec]毎に更新される）
 	s_GyroVal		= 0;						// ジャイロ値クリア
 	f_GyroNowAngle	= 0;							// ジャイロ値クリア
+	f_NowAngle		= 0;						// [角度制御]   現在角度	
 }
 
 void CTRL_setNowData_Err(/*float trgtDist, */float trgtAngle)
@@ -209,14 +209,15 @@ void CTRL_setNowData_Err(/*float trgtDist, */float trgtAngle)
 	l_CntR			= 0;						// カウンタクリア
 	l_CntL			= 0;						// カウンタクリア
 
-	/* 現在値 */
-	f_NowDist 		= 0;//f_NowDist - trgtDist;//本来こっちにしたいが妥協						// 移動距離リセット
+	/* 現在値 */					// 移動距離リセット
 	f_NowDistR 		= 0;
 	f_NowDistL 		= 0;
+	f_NowDist 		= 0;//f_NowDist - trgtDist;//本来こっちにしたいが妥協
 	f_NowSpeed		= 0;						// [速度制御]   現在の速度 [mm/s]			（1[msec]毎に更新される）
-	f_NowAngle		= f_NowAngle - trgtAngle;						// [角度制御]   現在角度					（1[msec]毎に更新される）
 	s_GyroVal		= 0;						// ジャイロ値クリア
 	f_GyroNowAngle	= 0;							// ジャイロ値クリア
+	f_NowAngle		= f_NowAngle - trgtAngle;						// [角度制御]   現在角度					（1[msec]毎に更新される）
+	
 }
 
 void CTRL_setData( stCTRL_DATA* p_data )
@@ -1037,7 +1038,7 @@ void CTRL_getFloorFriction(float* p_err){
 				*p_err = (-1.0)*0.37/1000.0;
 			}
 */
-			*p_err = 0.0;//(-1.0)*0.2/1000.0;
+			*p_err = (-1.0)*0.5/1000.0;//(-1.0)*0.2/1000.0;
 		}
 		else if(f_TrgtAngleS>0){
 /*
@@ -1047,7 +1048,7 @@ void CTRL_getFloorFriction(float* p_err){
 			else
 				*p_err = 0.37/1000.0;
 */
-			*p_err = 0.0;//0.2/1000.0;
+			*p_err = 0.5/1000.0;//0.2/1000.0;
 		}else{
 			*p_err = 0;
 //		}

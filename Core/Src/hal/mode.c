@@ -237,12 +237,12 @@ void MODE_exe_m0( void )
 			CTRL_clrNowData();
 			log_flag_on();
 			LL_mDelay(10);
-
+/*
 			MOT_goBlock_FinSpeed(0.5, SEARCH_SPEED);
 //			MOT_goBlock_Const(1);
 			MOT_goSla(MOT_R90S, PARAM_getSra( SLA_90 ));
 			MOT_goBlock_FinSpeed(0.5, 0);
-
+*/
 /*
 			MOT_goBlock_FinSpeed(0.5,SEARCH_SPEED);
 			MOT_goSla(MOT_L45S_S2N,PARAM_getSra( SLA_45 ));
@@ -250,12 +250,13 @@ void MODE_exe_m0( void )
 			MOT_goSla(MOT_R135S_N2S,PARAM_getSra( SLA_135 ));
 			MOT_goBlock_FinSpeed(0.5, 0);
 */
-/*
+
 			MOT_turn(MOT_R90);
 			LL_mDelay(500);
 			MOT_turn(MOT_L90);
 			LL_mDelay(500);
-*/
+			MOT_turn(MOT_R180);
+			LL_mDelay(500);
 /*
 //			MOT_setTrgtSpeed(SEARCH_SPEED/4.0);		// 目標速度
 			MOT_goBlock_FinSpeed(2.0,0);
@@ -922,8 +923,10 @@ void MODE_exe_m3( void )
 			MAP_makeSkewCmdList();													
 			LL_mDelay(500);
 			Set_DutyTIM8(600);
-			LL_mDelay(2000);													
+			LL_mDelay(2000);		
+			log_flag_on();											
 			MAP_drive( MAP_DRIVE_SKEW );
+			log_flag_off();	
 			Set_DutyTIM8(0);
 			LL_mDelay(500);
 			MOT_turn(MOT_R180);

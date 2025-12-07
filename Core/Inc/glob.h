@@ -20,8 +20,8 @@
 /* ăăŻă­ */
 #define FABS(x)						( (x)>=0 ? (x) : -(x) )
 
-#define GOAL_MAP_X_DEF					( 20 )//2				
-#define GOAL_MAP_Y_DEF					( 9 )//11				
+#define GOAL_MAP_X_DEF					( 7 )//2				
+#define GOAL_MAP_Y_DEF					( 7 )//11				
 #define MAP_X_SIZE					( 32 )				
 #define MAP_Y_SIZE					( 32 )				
 
@@ -40,7 +40,7 @@
 #define GEAR_RATIO					(37.0f/8.0f)
 
 #define WEIGHT						(0.0214f)
-#define INERTIA						(1.4f/100000.0f)
+#define INERTIA						(8.0f/1000000.0f)
 #define TORQUE_CONSTANT				(0.41f/1000.0f)
 #define MOTOR_REGISTER				(2.3f)
 

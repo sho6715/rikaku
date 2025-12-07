@@ -95,6 +95,7 @@ void CTRL_stop( void );
 void CTRL_pol( void );
 void CTRL_clrData( void );
 void CTRL_clrNowData( void );
+void CTRL_clrTrgtIntegra(void);
 void CTRL_clrAngleErrSum(void);
 void CTRL_clrSpeedErrSum(void);
 void CTRL_setNowData_Err(/*float trgtDist, */float trgtAngle);

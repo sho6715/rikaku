@@ -31,3 +31,4 @@
 ../Core/Src/search/search.c:1792:6:MAP_searchGoalKnown_AllSection	40	static
 ../Core/Src/search/search.c:1954:6:MAP_clearMap_direction	16	static
 ../Core/Src/search/search.c:1969:7:MAP_makeContourMap_dijkstra_modoki	32	static
+../Core/Src/search/search.c:2111:6:dijkstra_fast	16	static

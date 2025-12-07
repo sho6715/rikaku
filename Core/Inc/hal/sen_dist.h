@@ -37,14 +37,14 @@
 #define L_FRONT_SKEW_ERR2				( 160 )
 #define R_FRONT_SKEW_ERR3				( 250 )
 #define L_FRONT_SKEW_ERR3				( 250 )
-#define R_FRONT_CTRL					(168)//( 370 )	//maekabehoseiniryuuyou
-#define L_FRONT_CTRL					(138)//( 300 )
+#define R_FRONT_CTRL					(178)//( 370 )	//maekabehoseiniryuuyou
+#define L_FRONT_CTRL					(148)//( 300 )
 #define R_FRONT_NOCTRL					(1000)//( 530 )
 #define L_FRONT_NOCTRL					(1200)//( 450 )
 
 #define FRONT_WALL_MINUS				(45)
 
-#define FRONT_WALL_MISS_DIF				(200)
+#define FRONT_WALL_MISS_DIF				(130)
 
 
 /*距離センサポ�??��リングタイ?��?*/
