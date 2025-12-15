@@ -111,7 +111,7 @@ void MX_TIM2_Init(void)
   /* USER CODE END TIM2_Init 1 */
   TIM_InitStruct.Prescaler = 0;
   TIM_InitStruct.CounterMode = LL_TIM_COUNTERMODE_UP;
-  TIM_InitStruct.Autoreload = 1699;
+  TIM_InitStruct.Autoreload = 849;
   TIM_InitStruct.ClockDivision = LL_TIM_CLOCKDIVISION_DIV1;
   LL_TIM_Init(TIM2, &TIM_InitStruct);
   LL_TIM_EnableARRPreload(TIM2);
@@ -161,7 +161,7 @@ void MX_TIM3_Init(void)
   /* USER CODE END TIM3_Init 1 */
   TIM_InitStruct.Prescaler = 0;
   TIM_InitStruct.CounterMode = LL_TIM_COUNTERMODE_UP;
-  TIM_InitStruct.Autoreload = 1699;
+  TIM_InitStruct.Autoreload = 849;
   TIM_InitStruct.ClockDivision = LL_TIM_CLOCKDIVISION_DIV1;
   LL_TIM_Init(TIM3, &TIM_InitStruct);
   LL_TIM_EnableARRPreload(TIM3);
@@ -371,7 +371,7 @@ void MX_TIM8_Init(void)
   /* USER CODE END TIM8_Init 1 */
   TIM_InitStruct.Prescaler = 0;
   TIM_InitStruct.CounterMode = LL_TIM_COUNTERMODE_UP;
-  TIM_InitStruct.Autoreload = 1699;
+  TIM_InitStruct.Autoreload = 849;
   TIM_InitStruct.ClockDivision = LL_TIM_CLOCKDIVISION_DIV1;
   TIM_InitStruct.RepetitionCounter = 0;
   LL_TIM_Init(TIM8, &TIM_InitStruct);
@@ -519,17 +519,17 @@ void Disable_TIM5(void){
 }
 
 void Set_DutyTIM2(uint16_t duty){
-  uint16_t compare = (float)duty/1000.0*1699.0;
-  if(compare>1699){
-    compare = 1699;
+  uint16_t compare = (float)duty/1000.0*849.0;
+  if(compare>849){
+    compare = 849;
   }
   LL_TIM_OC_SetCompareCH2(TIM2,compare);
 }
 
 void Set_DutyTIM3(uint16_t duty){
-  uint16_t compare = (float)duty/1000.0*1699.0;
-  if(compare>1699){
-    compare = 1699;
+  uint16_t compare = (float)duty/1000.0*849.0;
+  if(compare>849){
+    compare = 849;
   }
   LL_TIM_OC_SetCompareCH2(TIM3,compare);
 }

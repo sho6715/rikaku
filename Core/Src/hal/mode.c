@@ -53,15 +53,15 @@ void SYS_start( void )
 
 
 /*
-	printf("\r\n turn 45 \r\r");
-	PARAM_makeSra( 0.5, 550.0f, 7.50f,3000*PI,  SLA_45 );
-	printf("\r\n turn 90 \r\r");		
-	PARAM_makeSra( 0.5, 700.0f, 10.00f,3000*PI,  SLA_90 );	
+	printf("\r\n turn 45 \r\n");
+	PARAM_makeSra( 0.5, 500.0f, 10.50f,6000*PI,  SLA_45 );
+	printf("\r\n turn 90 \r\n");		
+	PARAM_makeSra( 0.5, 600.0f, 12.00f,6000*PI,  SLA_90 );	
 //	PARAM_makeSra( (float)SEARCH_SPEED, 150.0f, 3.00f,3000*PI,  SLA_90 );
-	printf("\r\n turn 135 \r\r");	
-	PARAM_makeSra( 0.5, 750.0f, 10.00f,3000*PI,  SLA_135 );	
-	printf("\r\n turn N90 \r\r");	
-	PARAM_makeSra( 0.5, 800.0f, 11.00f,3000*PI,  SLA_N90 );	
+	printf("\r\n turn 135 \r\n");	
+	PARAM_makeSra( 0.5, 700.0f, 16.00f,6000*PI,  SLA_135 );	
+	printf("\r\n turn N90 \r\n");	
+	PARAM_makeSra( 0.5, 800.0f, 17.00f,6000*PI,  SLA_N90 );	
 */
 }
 
@@ -207,7 +207,7 @@ void MODE_exe_m0( void )
 			DCM_setPwmDuty( DCM_L, 0 );
 */
 			
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(10000);
 			log_flag_off();
 			SetLED(0x0e);
@@ -228,6 +228,9 @@ void MODE_exe_m0( void )
 */
 //			printf("mode %d\n\r",MOT_getStType( 2.0, 0.0, MOT_GO_ST_NORMAL));
 //			MOT_getStType( 2.0, 0.0, MOT_GO_ST_NORMAL );
+//			MODE_speed_parameter(PARAM_NORMAL,PARAM_VERY_SLOW,PARAM_VERY_SLOW,1.5,
+//								SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED);
+
 
 			SetLED(0x00);
 			LL_mDelay(500);
@@ -237,12 +240,13 @@ void MODE_exe_m0( void )
 			CTRL_clrNowData();
 			log_flag_on();
 			LL_mDelay(10);
-/*
+//			MOT_goBlock_FinSpeed(3.0,0);
+
 			MOT_goBlock_FinSpeed(0.5, SEARCH_SPEED);
 //			MOT_goBlock_Const(1);
 			MOT_goSla(MOT_R90S, PARAM_getSra( SLA_90 ));
 			MOT_goBlock_FinSpeed(0.5, 0);
-*/
+
 /*
 			MOT_goBlock_FinSpeed(0.5,SEARCH_SPEED);
 			MOT_goSla(MOT_L45S_S2N,PARAM_getSra( SLA_45 ));
@@ -250,14 +254,15 @@ void MODE_exe_m0( void )
 			MOT_goSla(MOT_R135S_N2S,PARAM_getSra( SLA_135 ));
 			MOT_goBlock_FinSpeed(0.5, 0);
 */
-
+/*
 			MOT_turn(MOT_R90);
 			LL_mDelay(500);
 			MOT_turn(MOT_L90);
 			LL_mDelay(500);
 			MOT_turn(MOT_R180);
 			LL_mDelay(500);
-/*
+*/
+			/*
 //			MOT_setTrgtSpeed(SEARCH_SPEED/4.0);		// 目標速度
 			MOT_goBlock_FinSpeed(2.0,0);
 			MOT_setTrgtSpeed(SEARCH_SPEED);		// 目標速度
@@ -267,19 +272,44 @@ void MODE_exe_m0( void )
 
 		case MODE_5:
 			SetLED(0x0e);
+			uint16_t test_speed = 1.0;
 
-			printf("\r\n turn 45 \r\r");
-			PARAM_makeSra( 0.5, 550.0f, 7.50f,3000*PI,  SLA_45 );
-			printf("\r\n turn 90 \r\r");		
-			PARAM_makeSra( 0.5, 700.0f, 10.00f,3000*PI,  SLA_90 );	
-		//	PARAM_makeSra( (float)SEARCH_SPEED, 150.0f, 3.00f,3000*PI,  SLA_90 );
-			printf("\r\n turn 135 \r\r");	
-			PARAM_makeSra( 0.5, 750.0f, 10.00f,3000*PI,  SLA_135 );	
-			printf("\r\n turn N90 \r\r");	
-			PARAM_makeSra( 0.5, 800.0f, 11.00f,3000*PI,  SLA_N90 );	
-			MODE_speed_parameter(PARAM_VERY_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*4.0,
+			printf("\r\n turn 45 \r\n");
+			PARAM_makeSra( 0.5, 500.0f, 7.00f,6000*PI,  SLA_45 );
+			printf("\r\n turn 90 \r\n");		
+			PARAM_makeSra( 0.5, 600.0f, 10.00f,6000*PI,  SLA_90 );	
+			printf("\r\n turn 135 \r\n");	
+			PARAM_makeSra( 0.5, 650.0f, 12.00f,6000*PI,  SLA_135 );	
+			printf("\r\n turn N90 \r\n");	
+			PARAM_makeSra( 0.5, 850.0f, 14.00f,12000*PI,  SLA_N90 );	
+			MODE_speed_parameter(PARAM_NORMAL,PARAM_VERY_SLOW,PARAM_SLOW,0.5,
 								0.5,0.5,0.5,0.5);
+
 /*
+			printf("\r\n turn 45 \r\n");
+			PARAM_makeSra( 1.0, 1300.0f, 25.00f,35000*PI,  SLA_45 );
+			printf("\r\n turn 90 \r\n");		
+			PARAM_makeSra( 1.0, 1600.0f, 33.00f,55000*PI,  SLA_90 );	
+			printf("\r\n turn 135 \r\n");	
+			PARAM_makeSra( 1.0, 1500.0f, 40.00f,55000*PI,  SLA_135 );	
+			printf("\r\n turn N90 \r\n");	
+			PARAM_makeSra( 1.0, 2100.0f, 45.00f,180000*PI,  SLA_N90 );	
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,3.5,
+								1.0,1.0,1.0,1.0);
+*/
+								/*
+			printf("\r\n turn 45 \r\n");
+			PARAM_makeSra( 1.5, 3000.0f, 50.00f,100000*PI,  SLA_45 );
+			printf("\r\n turn 90 \r\n");		
+			PARAM_makeSra( 1.5, 3900.0f, 70.00f,200000*PI,  SLA_90 );	
+			printf("\r\n turn 135 \r\n");	
+			PARAM_makeSra( 1.5, 3500.0f, 90.00f,300000*PI,  SLA_135 );	
+			printf("\r\n turn N90 \r\n");	
+			PARAM_makeSra( 1.5, 4200.0f, 110.00f,450000*PI,  SLA_N90 );	
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_FAST,4.0,
+								1.5,1.5,1.5,1.5);		
+*/
+								/*
 			MOT_setTrgtSpeed(SEARCH_SPEED*4.0);
 			MOT_setSlaStaSpeed( 0.5, SLA_90);							// スラロー�?開始速度設�?
 			MOT_setSlaStaSpeed( 0.5, SLA_45);
@@ -295,29 +325,33 @@ void MODE_exe_m0( void )
 			CTRL_clrAngleErrSum();
 			CTRL_clrSpeedErrSum();
 			CTRL_clrNowData();
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(2000);
 			log_flag_on();
-/*
-			MOT_goBlock_FinSpeed(0.5, 0.5);
+
+			// 90deg
+			MOT_goBlock_FinSpeed(1.0, test_speed);
 			MOT_goSla(MOT_R90S, PARAM_getSra( SLA_90 ));
-			MOT_goBlock_FinSpeed(0.5, 0);
-*/
+			MOT_goBlock_FinSpeed(1.0, 0);
+
 /*
-			MOT_goBlock_FinSpeed(1.0, 0.5);
+			// 45deg
+			MOT_goBlock_FinSpeed(1.0, test_speed);
 			MOT_goSla(MOT_R45S_S2N, PARAM_getSra( SLA_45 ));
 			MOT_goSkewBlock_FinSpeed(0.5, 0);
 */
 /*
-			MOT_goSkewBlock_FinSpeed(0.5, 0.5);
+			// V90deg
+			MOT_goSkewBlock_FinSpeed(0.5, test_speed);
 			MOT_goSla(MOT_R90S_N, PARAM_getSra( SLA_N90 ));
 			MOT_goSkewBlock_FinSpeed(0.5, 0);
 */
-
-			MOT_goBlock_FinSpeed(0.5, 0.5);
+/*
+			// 135deg
+			MOT_goBlock_FinSpeed(0.5, test_speed);
 			MOT_goSla(MOT_R135S_S2N, PARAM_getSra( SLA_135 ));
 			MOT_goSkewBlock_FinSpeed(0.5, 0);
-
+*/
 			log_flag_off();
 
 			Set_DutyTIM8(0);
@@ -691,7 +725,7 @@ void MODE_exe_m2( void )
 			CTRL_clrSpeedErrSum();
 			CTRL_clrNowData();
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*4.0,
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_SLOW,SEARCH_SPEED*4.0,
 								0.5,0.5,0.5,0.5);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*4.0);
@@ -711,7 +745,7 @@ void MODE_exe_m2( void )
 			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
 			MAP_makeSkewCmdList();													
 			LL_mDelay(500);
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(2000);			
 
 			log_flag_on();										
@@ -753,7 +787,7 @@ void MODE_exe_m2( void )
 	}
 }
 
-void MODE_exe_m3( void )
+void MODE_exe_m3( void )//turn 300
 {
 	enMAP_HEAD_DIR		en_endDir2;
 
@@ -771,7 +805,7 @@ void MODE_exe_m3( void )
 
 		case MODE_0:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,SEARCH_SPEED*4.0,
+			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_VERY_SLOW,1.5,
 								SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*4.0);
@@ -790,7 +824,7 @@ void MODE_exe_m3( void )
 			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
 			MAP_makeSkewCmdList();													
 			LL_mDelay(500);
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(2000);
 			MAP_drive( MAP_DRIVE_SLA );													
 			Set_DutyTIM8(0);
@@ -803,7 +837,7 @@ void MODE_exe_m3( void )
 
 		case MODE_1:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,SEARCH_SPEED*5.0,
+			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_VERY_SLOW,2.0,
 								SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*5.0);
@@ -822,7 +856,7 @@ void MODE_exe_m3( void )
 			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
 			MAP_makeSkewCmdList();													
 			LL_mDelay(500);
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(2000);													
 			MAP_drive( MAP_DRIVE_SLA );
 			Set_DutyTIM8(0);
@@ -835,7 +869,7 @@ void MODE_exe_m3( void )
 
 		case MODE_2:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_NORMAL,PARAM_VERY_SLOW,PARAM_SLOW,SEARCH_SPEED*6.0,
+			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_VERY_SLOW,2.5,
 								SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
@@ -854,7 +888,7 @@ void MODE_exe_m3( void )
 			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
 			MAP_makeSkewCmdList();													
 			LL_mDelay(500);
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(2000);												
 			MAP_drive( MAP_DRIVE_SLA );
 			Set_DutyTIM8(0);
@@ -867,7 +901,7 @@ void MODE_exe_m3( void )
 
 		case MODE_3:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,SEARCH_SPEED*4.0,
+			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_VERY_SLOW,1.5,
 								SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*4.0);
@@ -886,7 +920,7 @@ void MODE_exe_m3( void )
 			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
 			MAP_makeSkewCmdList();													
 			LL_mDelay(500);
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(2000);		
 			
 			log_flag_on();
@@ -903,7 +937,7 @@ void MODE_exe_m3( void )
 
 		case MODE_4:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,SEARCH_SPEED*5.0,
+			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_VERY_SLOW,2.0,
 								SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*5.0);
@@ -922,7 +956,7 @@ void MODE_exe_m3( void )
 			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
 			MAP_makeSkewCmdList();													
 			LL_mDelay(500);
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(2000);		
 			log_flag_on();											
 			MAP_drive( MAP_DRIVE_SKEW );
@@ -937,7 +971,7 @@ void MODE_exe_m3( void )
 
 		case MODE_5:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_SLOW,SEARCH_SPEED*6.0,
+			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_VERY_SLOW,2.5,
 								SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
@@ -956,7 +990,7 @@ void MODE_exe_m3( void )
 			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
 			MAP_makeSkewCmdList();													
 			LL_mDelay(500);
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(2000);													
 			MAP_drive( MAP_DRIVE_SKEW );
 			Set_DutyTIM8(0);
@@ -969,7 +1003,7 @@ void MODE_exe_m3( void )
 
 		case MODE_6:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,SEARCH_SPEED*5.0,
+			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_VERY_SLOW,2.0,
 								SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*5.0);
@@ -992,7 +1026,7 @@ void MODE_exe_m3( void )
 			MAP_makeSkewCmdList();
 
 			LL_mDelay(500);
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(2000);													
 			MAP_drive( MAP_DRIVE_SKEW );
 			Set_DutyTIM8(0);
@@ -1190,21 +1224,20 @@ void MODE_exe_m4( void )
 	}
 }
 
-void MODE_exe_m5( void )
+void MODE_exe_m5( void )//turn 500
 {
 	enMAP_HEAD_DIR		en_endDir2;
 
 	uint64_t data =0;
 
-	printf("\r\n turn 45 \r\r");
-	PARAM_makeSra( 0.5, 550.0f, 7.50f,3000*PI,  SLA_45 );
-	printf("\r\n turn 90 \r\r");		
-	PARAM_makeSra( 0.5, 700.0f, 10.00f,3000*PI,  SLA_90 );	
-//	PARAM_makeSra( (float)SEARCH_SPEED, 150.0f, 3.00f,3000*PI,  SLA_90 );
-	printf("\r\n turn 135 \r\r");	
-	PARAM_makeSra( 0.5, 750.0f, 10.00f,3000*PI,  SLA_135 );	
-	printf("\r\n turn N90 \r\r");	
-	PARAM_makeSra( 0.5, 800.0f, 11.00f,3000*PI,  SLA_N90 );	
+	printf("\r\n turn 45 \r\n");
+	PARAM_makeSra( 0.5, 500.0f, 7.00f,6000*PI,  SLA_45 );
+	printf("\r\n turn 90 \r\n");		
+	PARAM_makeSra( 0.5, 600.0f, 10.00f,6000*PI,  SLA_90 );	
+	printf("\r\n turn 135 \r\n");	
+	PARAM_makeSra( 0.5, 650.0f, 12.00f,6000*PI,  SLA_135 );	
+	printf("\r\n turn N90 \r\n");	
+	PARAM_makeSra( 0.5, 850.0f, 14.00f,12000*PI,  SLA_N90 );
 
 	Map_Copy();
 
@@ -1218,7 +1251,7 @@ void MODE_exe_m5( void )
 
 		case MODE_0:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*4.0,
+			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,2.0,
 								0.5,0.5,0.5,0.5);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*4.0);
@@ -1237,7 +1270,7 @@ void MODE_exe_m5( void )
 			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
 			MAP_makeSkewCmdList();													
 			LL_mDelay(500);
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(2000);	
 			MAP_drive( MAP_DRIVE_SLA );												
 			Set_DutyTIM8(0);
@@ -1250,7 +1283,7 @@ void MODE_exe_m5( void )
 
 		case MODE_1:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*5.0,
+			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,2.5,
 								0.5,0.5,0.5,0.5);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*5.0);
@@ -1270,7 +1303,7 @@ void MODE_exe_m5( void )
 			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
 			MAP_makeSkewCmdList();													
 			LL_mDelay(500);
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(2000);													
 			MAP_drive( MAP_DRIVE_SLA );
 			Set_DutyTIM8(0);
@@ -1283,7 +1316,7 @@ void MODE_exe_m5( void )
 
 		case MODE_2:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*6.0,
+			MODE_speed_parameter(PARAM_NORMAL,PARAM_VERY_SLOW,PARAM_SLOW,3.0,
 								0.5,0.5,0.5,0.5);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
@@ -1303,7 +1336,7 @@ void MODE_exe_m5( void )
 			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
 			MAP_makeSkewCmdList();													
 			LL_mDelay(500);
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(2000);												
 			MAP_drive( MAP_DRIVE_SLA );
 			Set_DutyTIM8(0);
@@ -1316,7 +1349,7 @@ void MODE_exe_m5( void )
 
 		case MODE_3:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*4.0,
+			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,2.0,
 								0.5,0.5,0.5,0.5);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*4.0);
@@ -1336,7 +1369,7 @@ void MODE_exe_m5( void )
 			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
 			MAP_makeSkewCmdList();													
 			LL_mDelay(500);
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(2000);			
 
 			log_flag_on();										
@@ -1352,7 +1385,7 @@ void MODE_exe_m5( void )
 
 		case MODE_4:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_VERY_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*5.0,
+			MODE_speed_parameter(PARAM_NORMAL,PARAM_VERY_SLOW,PARAM_SLOW,2.5,
 								0.5,0.5,0.5,0.5);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*5.0);
@@ -1372,9 +1405,11 @@ void MODE_exe_m5( void )
 			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
 			MAP_makeSkewCmdList();													
 			LL_mDelay(500);
-			Set_DutyTIM8(600);
-			LL_mDelay(2000);													
+			Set_DutyTIM8(400);
+			LL_mDelay(2000);
+			log_flag_on();													
 			MAP_drive( MAP_DRIVE_SKEW );
+			log_flag_off();
 			Set_DutyTIM8(0);
 			LL_mDelay(500);
 			MOT_turn(MOT_R180);
@@ -1385,7 +1420,7 @@ void MODE_exe_m5( void )
 
 		case MODE_5:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_VERY_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*6.0,
+			MODE_speed_parameter(PARAM_NORMAL,PARAM_VERY_SLOW,PARAM_SLOW,3.0,
 								0.5,0.5,0.5,0.5);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
@@ -1405,7 +1440,7 @@ void MODE_exe_m5( void )
 			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
 			MAP_makeSkewCmdList();													
 			LL_mDelay(500);
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(2000);													
 			MAP_drive( MAP_DRIVE_SKEW );
 			Set_DutyTIM8(0);
@@ -1418,7 +1453,7 @@ void MODE_exe_m5( void )
 
 		case MODE_6:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_VERY_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*6.0,
+			MODE_speed_parameter(PARAM_NORMAL,PARAM_VERY_SLOW,PARAM_SLOW,3.0,
 								0.5,0.5,0.5,0.5);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
@@ -1442,7 +1477,7 @@ void MODE_exe_m5( void )
 			MAP_makeSkewCmdList();
 
 			LL_mDelay(500);
-			Set_DutyTIM8(600);
+			Set_DutyTIM8(400);
 			LL_mDelay(2000);													
 			MAP_drive( MAP_DRIVE_SKEW );
 			Set_DutyTIM8(0);
@@ -1472,6 +1507,571 @@ void MODE_exe_m5( void )
 	PARAM_makeSra( (float)SEARCH_SPEED, 300.0f, 4.00f,3000*PI,  SLA_N90 );	
 }
 
+void MODE_exe_m6( void )// 1000
+{
+	enMAP_HEAD_DIR		en_endDir2;
+
+	uint64_t data =0;
+
+	printf("\r\n turn 45 \r\n");
+	PARAM_makeSra( 1.0, 1300.0f, 25.00f,35000*PI,  SLA_45 );
+	printf("\r\n turn 90 \r\n");		
+	PARAM_makeSra( 1.0, 1600.0f, 33.00f,55000*PI,  SLA_90 );	
+	printf("\r\n turn 135 \r\n");	
+	PARAM_makeSra( 1.0, 1500.0f, 40.00f,55000*PI,  SLA_135 );	
+	printf("\r\n turn N90 \r\n");	
+	PARAM_makeSra( 1.0, 2100.0f, 45.00f,180000*PI,  SLA_N90 );	
+
+	Map_Copy();
+
+	GYRO_SetRef();
+	CTRL_clrData();
+	CTRL_clrAngleErrSum();
+	CTRL_clrSpeedErrSum();
+	CTRL_clrNowData();
+
+	switch( en_Mode ){
+
+		case MODE_0:
+			SetLED(0x0e);
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,3.0,
+								1.0,1.0,1.0,1.0);
+/*
+			MOT_setTrgtSpeed(SEARCH_SPEED*4.0);
+			MOT_setSlaStaSpeed( 0.5 , SLA_90);							// スラロー�?開始速度設�?
+			MOT_setSlaStaSpeed( 0.5 , SLA_45);
+			MOT_setSlaStaSpeed( 0.5 , SLA_135);
+			MOT_setSlaStaSpeed( 0.5 , SLA_N90);							
+			PARAM_setSpeedType( PARAM_ST,   PARAM_FAST );							
+			PARAM_setSpeedType( PARAM_TRUN, PARAM_VERY_SLOW );							
+			PARAM_setSpeedType( PARAM_SLA,  PARAM_NORMAL );							
+*/			SetLED(0x00);	
+			MAP_setPos( 0, 0, NORTH );												// スタート位置
+			MAP_Goalsize(1);
+			MAP_makeContourMap_run( GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, BEST_WAY );					// 等高線�?�ップを作る
+			MAP_makeCmdList( 0, 0, NORTH, GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, &en_endDir2 );		// ドライブコマンド作�??
+			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
+			MAP_makeSkewCmdList();													
+			LL_mDelay(500);
+			Set_DutyTIM8(400);
+			LL_mDelay(2000);	
+			MAP_drive( MAP_DRIVE_SLA );												
+			Set_DutyTIM8(0);
+			LL_mDelay(500);
+			MOT_turn(MOT_R180);
+			MAP_actGoalLED();
+			Set_DutyTIM8(0);
+			Failsafe_flag_off();
+			break;
+
+		case MODE_1:
+			SetLED(0x0e);
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,3.5,
+								1.0,1.0,1.0,1.0);
+/*
+			MOT_setTrgtSpeed(SEARCH_SPEED*5.0);
+			MOT_setSlaStaSpeed( 0.5 , SLA_90);							// スラロー�?開始速度設�?
+			MOT_setSlaStaSpeed( 0.5 , SLA_45);
+			MOT_setSlaStaSpeed( 0.5 , SLA_135);
+			MOT_setSlaStaSpeed( 0.5 , SLA_N90);							
+			PARAM_setSpeedType( PARAM_ST,   PARAM_FAST );							
+			PARAM_setSpeedType( PARAM_TRUN, PARAM_VERY_SLOW );							
+			PARAM_setSpeedType( PARAM_SLA,  PARAM_NORMAL );							
+*/								
+			SetLED(0x00);
+			MAP_setPos( 0, 0, NORTH );												// スタート位置
+			MAP_Goalsize(1);
+			MAP_makeContourMap_run( GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, BEST_WAY );					// 等高線�?�ップを作る
+			MAP_makeCmdList( 0, 0, NORTH, GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, &en_endDir2 );		// ドライブコマンド作�??
+			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
+			MAP_makeSkewCmdList();													
+			LL_mDelay(500);
+			Set_DutyTIM8(400);
+			LL_mDelay(2000);													
+			MAP_drive( MAP_DRIVE_SLA );
+			Set_DutyTIM8(0);
+			LL_mDelay(500);
+			MOT_turn(MOT_R180);
+			MAP_actGoalLED();
+			Set_DutyTIM8(0);
+			Failsafe_flag_off();
+			break;
+
+		case MODE_2:
+			SetLED(0x0e);
+			MODE_speed_parameter(PARAM_VERY_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,4.0,
+								1.0,1.0,1.0,1.0);
+/*
+			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
+			MOT_setSlaStaSpeed( 0.5 , SLA_90);							// スラロー�?開始速度設�?
+			MOT_setSlaStaSpeed( 0.5 , SLA_45);
+			MOT_setSlaStaSpeed( 0.5 , SLA_135);
+			MOT_setSlaStaSpeed( 0.5 , SLA_N90);							
+			PARAM_setSpeedType( PARAM_ST,   PARAM_FAST );							
+			PARAM_setSpeedType( PARAM_TRUN, PARAM_VERY_SLOW );							
+			PARAM_setSpeedType( PARAM_SLA,  PARAM_NORMAL );							
+*/								
+			SetLED(0x00);
+			MAP_setPos( 0, 0, NORTH );												// スタート位置
+			MAP_Goalsize(1);
+			MAP_makeContourMap_run( GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, BEST_WAY );					// 等高線�?�ップを作る
+			MAP_makeCmdList( 0, 0, NORTH, GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, &en_endDir2 );		// ドライブコマンド作�??
+			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
+			MAP_makeSkewCmdList();													
+			LL_mDelay(500);
+			Set_DutyTIM8(400);
+			LL_mDelay(2000);												
+			MAP_drive( MAP_DRIVE_SLA );
+			Set_DutyTIM8(0);
+			LL_mDelay(500);
+			MOT_turn(MOT_R180);
+			MAP_actGoalLED();
+			Set_DutyTIM8(0);			
+			Failsafe_flag_off();
+			break;
+
+		case MODE_3:
+			SetLED(0x0e);
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,3.0,
+								1.0,1.0,1.0,1.0);
+/*
+			MOT_setTrgtSpeed(SEARCH_SPEED*4.0);
+			MOT_setSlaStaSpeed( 0.5 , SLA_90);							// スラロー�?開始速度設�?
+			MOT_setSlaStaSpeed( 0.5 , SLA_45);
+			MOT_setSlaStaSpeed( 0.5 , SLA_135);
+			MOT_setSlaStaSpeed( 0.5 , SLA_N90);							
+			PARAM_setSpeedType( PARAM_ST,   PARAM_FAST );							
+			PARAM_setSpeedType( PARAM_TRUN, PARAM_VERY_SLOW );							
+			PARAM_setSpeedType( PARAM_SLA,  PARAM_NORMAL );							
+*/								
+			SetLED(0x00);
+			MAP_setPos( 0, 0, NORTH );												// スタート位置
+			MAP_Goalsize(1);
+			MAP_makeContourMap_run( GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, BEST_WAY );					// 等高線�?�ップを作る
+			MAP_makeCmdList( 0, 0, NORTH, GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, &en_endDir2 );		// ドライブコマンド作�??
+			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
+			MAP_makeSkewCmdList();													
+			LL_mDelay(500);
+			Set_DutyTIM8(400);
+			LL_mDelay(2000);			
+
+			log_flag_on();										
+			MAP_drive( MAP_DRIVE_SKEW );
+			log_flag_off();
+			Set_DutyTIM8(0);
+			LL_mDelay(500);
+			MOT_turn(MOT_R180);
+			MAP_actGoalLED();
+			Set_DutyTIM8(0);
+			Failsafe_flag_off();
+			break;
+
+		case MODE_4:
+			SetLED(0x0e);
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,3.5,
+								1.0,1.0,1.0,1.0);
+/*
+			MOT_setTrgtSpeed(SEARCH_SPEED*5.0);
+			MOT_setSlaStaSpeed( 0.5 , SLA_90);							// スラロー�?開始速度設�?
+			MOT_setSlaStaSpeed( 0.5 , SLA_45);
+			MOT_setSlaStaSpeed( 0.5 , SLA_135);
+			MOT_setSlaStaSpeed( 0.5 , SLA_N90);							
+			PARAM_setSpeedType( PARAM_ST,   PARAM_VERY_FAST );							
+			PARAM_setSpeedType( PARAM_TRUN, PARAM_VERY_SLOW );							
+			PARAM_setSpeedType( PARAM_SLA,  PARAM_NORMAL );							
+*/							
+			SetLED(0x00);
+			MAP_setPos( 0, 0, NORTH );												// スタート位置
+			MAP_Goalsize(1);
+			MAP_makeContourMap_run( GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, BEST_WAY );					// 等高線�?�ップを作る
+			MAP_makeCmdList( 0, 0, NORTH, GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, &en_endDir2 );		// ドライブコマンド作�??
+			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
+			MAP_makeSkewCmdList();													
+			LL_mDelay(500);
+			Set_DutyTIM8(400);
+			LL_mDelay(2000);													
+			log_flag_on();													
+			MAP_drive( MAP_DRIVE_SKEW );
+			log_flag_off();
+			Set_DutyTIM8(0);
+			LL_mDelay(500);
+			MOT_turn(MOT_R180);
+			MAP_actGoalLED();
+			Set_DutyTIM8(0);
+			Failsafe_flag_off();
+			break;
+
+		case MODE_5:
+			SetLED(0x0e);
+			MODE_speed_parameter(PARAM_VERY_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,4.0,
+								1.0,1.0,1.0,1.0);
+/*
+			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
+			MOT_setSlaStaSpeed( 0.5 , SLA_90);							// スラロー�?開始速度設�?
+			MOT_setSlaStaSpeed( 0.5 , SLA_45);
+			MOT_setSlaStaSpeed( 0.5 , SLA_135);
+			MOT_setSlaStaSpeed( 0.5 , SLA_N90);							
+			PARAM_setSpeedType( PARAM_ST,   PARAM_VERY_FAST );							
+			PARAM_setSpeedType( PARAM_TRUN, PARAM_VERY_SLOW );							
+			PARAM_setSpeedType( PARAM_SLA,  PARAM_NORMAL );							
+*/										
+			SetLED(0x00);
+			MAP_setPos( 0, 0, NORTH );												// スタート位置
+			MAP_Goalsize(1);
+			MAP_makeContourMap_run( GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, BEST_WAY );					// 等高線�?�ップを作る
+			MAP_makeCmdList( 0, 0, NORTH, GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, &en_endDir2 );		// ドライブコマンド作�??
+			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
+			MAP_makeSkewCmdList();													
+			LL_mDelay(500);
+			Set_DutyTIM8(400);
+			LL_mDelay(2000);													
+			MAP_drive( MAP_DRIVE_SKEW );
+			Set_DutyTIM8(0);
+			LL_mDelay(500);
+			MOT_turn(MOT_R180);
+			MAP_actGoalLED();
+			Set_DutyTIM8(0);
+			Failsafe_flag_off();
+			break;
+
+		case MODE_6:
+			SetLED(0x0e);
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,3.5,
+								1.0,1.0,1.0,1.0);
+/*
+			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
+			MOT_setSlaStaSpeed( 0.5 , SLA_90);							// スラロー�?開始速度設�?
+			MOT_setSlaStaSpeed( 0.5 , SLA_45);
+			MOT_setSlaStaSpeed( 0.5 , SLA_135);
+			MOT_setSlaStaSpeed( 0.5 , SLA_N90);							
+			PARAM_setSpeedType( PARAM_ST,   PARAM_VERY_FAST );							
+			PARAM_setSpeedType( PARAM_TRUN, PARAM_VERY_SLOW );							
+			PARAM_setSpeedType( PARAM_SLA,  PARAM_NORMAL );							
+*/									
+			SetLED(0x00);
+			MAP_setPos( 0, 0, NORTH );												// スタート位置
+
+			MAP_Goal_init();
+			MAP_makeContourMap_dijkstra_modoki(GOAL_MAP_X_DEF,GOAL_MAP_Y_DEF, BEST_WAY);
+			MAP_Goalsize(1);
+	
+			MAP_makeCmdList_dijkstra_modoki(0, 0, NORTH, GOAL_MAP_X_DEF,GOAL_MAP_Y_DEF, &en_endDir2);		// ドライブコマンド作成
+			MAP_makeSlaCmdList();													// スラロームコマンド作成
+			MAP_makeSkewCmdList();
+
+			LL_mDelay(500);
+			Set_DutyTIM8(400);
+			LL_mDelay(2000);													
+			MAP_drive( MAP_DRIVE_SKEW );
+			Set_DutyTIM8(0);
+			LL_mDelay(500);
+			MOT_turn(MOT_R180);
+			MAP_actGoalLED();
+			Set_DutyTIM8(0);
+			Failsafe_flag_off();
+			break;
+
+		case MODE_7:
+			SetLED(0x0e);
+			//cant use
+			break;
+
+		default:
+			break;
+	}
+	printf("\r\n turn 45 \r\r");
+	PARAM_makeSra( (float)SEARCH_SPEED, 100.0f, 2.50f,3000*PI,  SLA_45 );
+	printf("\r\n turn 90 \r\r");		
+	PARAM_makeSra( (float)SEARCH_SPEED, 200.0f, 3.50f,3000*PI,  SLA_90 );	
+//	PARAM_makeSra( (float)SEARCH_SPEED, 150.0f, 3.00f,3000*PI,  SLA_90 );
+	printf("\r\n turn 135 \r\r");	
+	PARAM_makeSra( (float)SEARCH_SPEED, 200.0f, 4.00f,3000*PI,  SLA_135 );	
+	printf("\r\n turn N90 \r\r");	
+	PARAM_makeSra( (float)SEARCH_SPEED, 300.0f, 4.00f,3000*PI,  SLA_N90 );	
+}
+
+void MODE_exe_m7( void )//1500
+{
+	enMAP_HEAD_DIR		en_endDir2;
+
+	uint64_t data =0;
+
+	printf("\r\n turn 45 \r\n");
+	PARAM_makeSra( 1.5, 3000.0f, 50.00f,100000*PI,  SLA_45 );
+	printf("\r\n turn 90 \r\n");		
+	PARAM_makeSra( 1.5, 3900.0f, 70.00f,200000*PI,  SLA_90 );	
+	printf("\r\n turn 135 \r\n");	
+	PARAM_makeSra( 1.5, 3500.0f, 90.00f,300000*PI,  SLA_135 );	
+	printf("\r\n turn N90 \r\n");	
+	PARAM_makeSra( 1.5, 4200.0f, 110.00f,450000*PI,  SLA_N90 );	
+
+	Map_Copy();
+
+	GYRO_SetRef();
+	CTRL_clrData();
+	CTRL_clrAngleErrSum();
+	CTRL_clrSpeedErrSum();
+	CTRL_clrNowData();
+
+	switch( en_Mode ){
+
+		case MODE_0:
+			SetLED(0x0e);
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_FAST,3.5,
+								1.5,1.5,1.5,1.5);
+/*
+			MOT_setTrgtSpeed(SEARCH_SPEED*4.0);
+			MOT_setSlaStaSpeed( 0.5 , SLA_90);							// スラロー�?開始速度設�?
+			MOT_setSlaStaSpeed( 0.5 , SLA_45);
+			MOT_setSlaStaSpeed( 0.5 , SLA_135);
+			MOT_setSlaStaSpeed( 0.5 , SLA_N90);							
+			PARAM_setSpeedType( PARAM_ST,   PARAM_FAST );							
+			PARAM_setSpeedType( PARAM_TRUN, PARAM_VERY_SLOW );							
+			PARAM_setSpeedType( PARAM_SLA,  PARAM_NORMAL );							
+*/			SetLED(0x00);	
+			MAP_setPos( 0, 0, NORTH );												// スタート位置
+			MAP_Goalsize(1);
+			MAP_makeContourMap_run( GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, BEST_WAY );					// 等高線�?�ップを作る
+			MAP_makeCmdList( 0, 0, NORTH, GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, &en_endDir2 );		// ドライブコマンド作�??
+			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
+			MAP_makeSkewCmdList();													
+			LL_mDelay(500);
+			Set_DutyTIM8(400);
+			LL_mDelay(2000);	
+			MAP_drive( MAP_DRIVE_SLA );												
+			Set_DutyTIM8(0);
+			LL_mDelay(500);
+			MOT_turn(MOT_R180);
+			MAP_actGoalLED();
+			Set_DutyTIM8(0);
+			Failsafe_flag_off();
+			break;
+
+		case MODE_1:
+			SetLED(0x0e);
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_FAST,4.0,
+								1.5,1.5,1.5,1.5);
+/*
+			MOT_setTrgtSpeed(SEARCH_SPEED*5.0);
+			MOT_setSlaStaSpeed( 0.5 , SLA_90);							// スラロー�?開始速度設�?
+			MOT_setSlaStaSpeed( 0.5 , SLA_45);
+			MOT_setSlaStaSpeed( 0.5 , SLA_135);
+			MOT_setSlaStaSpeed( 0.5 , SLA_N90);							
+			PARAM_setSpeedType( PARAM_ST,   PARAM_FAST );							
+			PARAM_setSpeedType( PARAM_TRUN, PARAM_VERY_SLOW );							
+			PARAM_setSpeedType( PARAM_SLA,  PARAM_NORMAL );							
+*/								
+			SetLED(0x00);
+			MAP_setPos( 0, 0, NORTH );												// スタート位置
+			MAP_Goalsize(1);
+			MAP_makeContourMap_run( GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, BEST_WAY );					// 等高線�?�ップを作る
+			MAP_makeCmdList( 0, 0, NORTH, GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, &en_endDir2 );		// ドライブコマンド作�??
+			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
+			MAP_makeSkewCmdList();													
+			LL_mDelay(500);
+			Set_DutyTIM8(400);
+			LL_mDelay(2000);													
+			MAP_drive( MAP_DRIVE_SLA );
+			Set_DutyTIM8(0);
+			LL_mDelay(500);
+			MOT_turn(MOT_R180);
+			MAP_actGoalLED();
+			Set_DutyTIM8(0);
+			Failsafe_flag_off();
+			break;
+
+		case MODE_2:
+			SetLED(0x0e);
+			MODE_speed_parameter(PARAM_VERY_FAST,PARAM_VERY_SLOW,PARAM_FAST,4.5,
+								1.5,1.5,1.5,1.5);
+/*
+			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
+			MOT_setSlaStaSpeed( 0.5 , SLA_90);							// スラロー�?開始速度設�?
+			MOT_setSlaStaSpeed( 0.5 , SLA_45);
+			MOT_setSlaStaSpeed( 0.5 , SLA_135);
+			MOT_setSlaStaSpeed( 0.5 , SLA_N90);							
+			PARAM_setSpeedType( PARAM_ST,   PARAM_FAST );							
+			PARAM_setSpeedType( PARAM_TRUN, PARAM_VERY_SLOW );							
+			PARAM_setSpeedType( PARAM_SLA,  PARAM_NORMAL );							
+*/								
+			SetLED(0x00);
+			MAP_setPos( 0, 0, NORTH );												// スタート位置
+			MAP_Goalsize(1);
+			MAP_makeContourMap_run( GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, BEST_WAY );					// 等高線�?�ップを作る
+			MAP_makeCmdList( 0, 0, NORTH, GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, &en_endDir2 );		// ドライブコマンド作�??
+			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
+			MAP_makeSkewCmdList();													
+			LL_mDelay(500);
+			Set_DutyTIM8(400);
+			LL_mDelay(2000);												
+			MAP_drive( MAP_DRIVE_SLA );
+			Set_DutyTIM8(0);
+			LL_mDelay(500);
+			MOT_turn(MOT_R180);
+			MAP_actGoalLED();
+			Set_DutyTIM8(0);			
+			Failsafe_flag_off();
+			break;
+
+		case MODE_3:
+			SetLED(0x0e);
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_FAST,3.5,
+								1.5,1.5,1.5,1.5);
+/*
+			MOT_setTrgtSpeed(SEARCH_SPEED*4.0);
+			MOT_setSlaStaSpeed( 0.5 , SLA_90);							// スラロー�?開始速度設�?
+			MOT_setSlaStaSpeed( 0.5 , SLA_45);
+			MOT_setSlaStaSpeed( 0.5 , SLA_135);
+			MOT_setSlaStaSpeed( 0.5 , SLA_N90);							
+			PARAM_setSpeedType( PARAM_ST,   PARAM_FAST );							
+			PARAM_setSpeedType( PARAM_TRUN, PARAM_VERY_SLOW );							
+			PARAM_setSpeedType( PARAM_SLA,  PARAM_NORMAL );							
+*/								
+			SetLED(0x00);
+			MAP_setPos( 0, 0, NORTH );												// スタート位置
+			MAP_Goalsize(1);
+			MAP_makeContourMap_run( GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, BEST_WAY );					// 等高線�?�ップを作る
+			MAP_makeCmdList( 0, 0, NORTH, GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, &en_endDir2 );		// ドライブコマンド作�??
+			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
+			MAP_makeSkewCmdList();													
+			LL_mDelay(500);
+			Set_DutyTIM8(400);
+			LL_mDelay(2000);			
+
+			log_flag_on();										
+			MAP_drive( MAP_DRIVE_SKEW );
+			log_flag_off();
+			Set_DutyTIM8(0);
+			LL_mDelay(500);
+			MOT_turn(MOT_R180);
+			MAP_actGoalLED();
+			Set_DutyTIM8(0);
+			Failsafe_flag_off();
+			break;
+
+		case MODE_4:
+			SetLED(0x0e);
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_FAST,4.0,
+								1.5,1.5,1.5,1.5);
+/*
+			MOT_setTrgtSpeed(SEARCH_SPEED*5.0);
+			MOT_setSlaStaSpeed( 0.5 , SLA_90);							// スラロー�?開始速度設�?
+			MOT_setSlaStaSpeed( 0.5 , SLA_45);
+			MOT_setSlaStaSpeed( 0.5 , SLA_135);
+			MOT_setSlaStaSpeed( 0.5 , SLA_N90);							
+			PARAM_setSpeedType( PARAM_ST,   PARAM_VERY_FAST );							
+			PARAM_setSpeedType( PARAM_TRUN, PARAM_VERY_SLOW );							
+			PARAM_setSpeedType( PARAM_SLA,  PARAM_NORMAL );							
+*/							
+			SetLED(0x00);
+			MAP_setPos( 0, 0, NORTH );												// スタート位置
+			MAP_Goalsize(1);
+			MAP_makeContourMap_run( GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, BEST_WAY );					// 等高線�?�ップを作る
+			MAP_makeCmdList( 0, 0, NORTH, GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, &en_endDir2 );		// ドライブコマンド作�??
+			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
+			MAP_makeSkewCmdList();													
+			LL_mDelay(500);
+			Set_DutyTIM8(400);
+			LL_mDelay(2000);													
+			log_flag_on();													
+			MAP_drive( MAP_DRIVE_SKEW );
+			log_flag_off();
+			Set_DutyTIM8(0);
+			LL_mDelay(500);
+			MOT_turn(MOT_R180);
+			MAP_actGoalLED();
+			Set_DutyTIM8(0);
+			Failsafe_flag_off();
+			break;
+
+		case MODE_5:
+			SetLED(0x0e);
+			MODE_speed_parameter(PARAM_VERY_FAST,PARAM_VERY_SLOW,PARAM_FAST,4.5,
+								1.5,1.5,1.5,1.5);
+/*
+			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
+			MOT_setSlaStaSpeed( 0.5 , SLA_90);							// スラロー�?開始速度設�?
+			MOT_setSlaStaSpeed( 0.5 , SLA_45);
+			MOT_setSlaStaSpeed( 0.5 , SLA_135);
+			MOT_setSlaStaSpeed( 0.5 , SLA_N90);							
+			PARAM_setSpeedType( PARAM_ST,   PARAM_VERY_FAST );							
+			PARAM_setSpeedType( PARAM_TRUN, PARAM_VERY_SLOW );							
+			PARAM_setSpeedType( PARAM_SLA,  PARAM_NORMAL );							
+*/										
+			SetLED(0x00);
+			MAP_setPos( 0, 0, NORTH );												// スタート位置
+			MAP_Goalsize(1);
+			MAP_makeContourMap_run( GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, BEST_WAY );					// 等高線�?�ップを作る
+			MAP_makeCmdList( 0, 0, NORTH, GOAL_MAP_X_DEF, GOAL_MAP_Y_DEF, &en_endDir2 );		// ドライブコマンド作�??
+			MAP_makeSlaCmdList();													// スラロー�?コマンド作�??
+			MAP_makeSkewCmdList();													
+			LL_mDelay(500);
+			Set_DutyTIM8(400);
+			LL_mDelay(2000);													
+			MAP_drive( MAP_DRIVE_SKEW );
+			Set_DutyTIM8(0);
+			LL_mDelay(500);
+			MOT_turn(MOT_R180);
+			MAP_actGoalLED();
+			Set_DutyTIM8(0);
+			Failsafe_flag_off();
+			break;
+
+		case MODE_6:
+			SetLED(0x0e);
+			MODE_speed_parameter(PARAM_VERY_FAST,PARAM_VERY_SLOW,PARAM_FAST,4.0,
+								1.5,1.5,1.5,1.5);
+/*
+			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
+			MOT_setSlaStaSpeed( 0.5 , SLA_90);							// スラロー�?開始速度設�?
+			MOT_setSlaStaSpeed( 0.5 , SLA_45);
+			MOT_setSlaStaSpeed( 0.5 , SLA_135);
+			MOT_setSlaStaSpeed( 0.5 , SLA_N90);							
+			PARAM_setSpeedType( PARAM_ST,   PARAM_VERY_FAST );							
+			PARAM_setSpeedType( PARAM_TRUN, PARAM_VERY_SLOW );							
+			PARAM_setSpeedType( PARAM_SLA,  PARAM_NORMAL );							
+*/									
+			SetLED(0x00);
+			MAP_setPos( 0, 0, NORTH );												// スタート位置
+
+			MAP_Goal_init();
+			MAP_makeContourMap_dijkstra_modoki(GOAL_MAP_X_DEF,GOAL_MAP_Y_DEF, BEST_WAY);
+			MAP_Goalsize(1);
+	
+			MAP_makeCmdList_dijkstra_modoki(0, 0, NORTH, GOAL_MAP_X_DEF,GOAL_MAP_Y_DEF, &en_endDir2);		// ドライブコマンド作成
+			MAP_makeSlaCmdList();													// スラロームコマンド作成
+			MAP_makeSkewCmdList();
+
+			LL_mDelay(500);
+			Set_DutyTIM8(400);
+			LL_mDelay(2000);													
+			MAP_drive( MAP_DRIVE_SKEW );
+			Set_DutyTIM8(0);
+			LL_mDelay(500);
+			MOT_turn(MOT_R180);
+			MAP_actGoalLED();
+			Set_DutyTIM8(0);
+			Failsafe_flag_off();
+			break;
+
+		case MODE_7:
+			SetLED(0x0e);
+			//cant use
+			break;
+
+		default:
+			break;
+	}
+	printf("\r\n turn 45 \r\r");
+	PARAM_makeSra( (float)SEARCH_SPEED, 100.0f, 2.50f,3000*PI,  SLA_45 );
+	printf("\r\n turn 90 \r\r");		
+	PARAM_makeSra( (float)SEARCH_SPEED, 200.0f, 3.50f,3000*PI,  SLA_90 );	
+//	PARAM_makeSra( (float)SEARCH_SPEED, 150.0f, 3.00f,3000*PI,  SLA_90 );
+	printf("\r\n turn 135 \r\r");	
+	PARAM_makeSra( (float)SEARCH_SPEED, 200.0f, 4.00f,3000*PI,  SLA_135 );	
+	printf("\r\n turn N90 \r\r");	
+	PARAM_makeSra( (float)SEARCH_SPEED, 300.0f, 4.00f,3000*PI,  SLA_N90 );	
+}
 
 void MODE_exe( void )
 {
@@ -1642,12 +2242,52 @@ void MODE_exe( void )
 
 		case MODE_6:
 			SetLED(0x0e);
+			en_Mode = MODE_0;	
+			LL_mDelay(100);
+			SetLED(0x00);
+			NowModeLed = MODELED_2;
+			while(1){
+				if (( SW_IsOn_1() == SW_ON)||CountUP_mode()){
+					MODE_inc();								
+					LL_mDelay(200);			
+					printf("mode selecting_1\r\n");
+				}
+				else if (( SW_IsOn_0() == SW_ON )||(TRUE == MODE_CheckExe())){
+					MODE_exe_m6();								
+					LL_mDelay(200);				
+					if (en_Mode == MODE_7){
+						NowModeLed = MODELED_1;
+						break;
+					}
+				}
 
+			}
+			en_Mode = MODE_6;
 			break;
 
 		case MODE_7:
 			SetLED(0x0e);
-			
+			en_Mode = MODE_0;	
+			LL_mDelay(100);
+			SetLED(0x00);
+			NowModeLed = MODELED_2;
+			while(1){
+				if (( SW_IsOn_1() == SW_ON)||CountUP_mode()){
+					MODE_inc();								
+					LL_mDelay(200);			
+					printf("mode selecting_1\r\n");
+				}
+				else if (( SW_IsOn_0() == SW_ON )||(TRUE == MODE_CheckExe())){
+					MODE_exe_m7();								
+					LL_mDelay(200);				
+					if (en_Mode == MODE_7){
+						NowModeLed = MODELED_1;
+						break;
+					}
+				}
+
+			}
+			en_Mode = MODE_7;
 			break;
 
 

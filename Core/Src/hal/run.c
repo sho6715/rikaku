@@ -1674,7 +1674,7 @@ void MOT_goHitBackWall(void)
 	/*  動作データ計算  */
 	/* ---------------- */
 	/* 加速度 */
-	st_info.f_mot_trgtAcc1= 1200.0;												// 角加速度1[rad/s^2]												// 角加速度3[rad/s^2]
+	st_info.f_mot_trgtAcc1= 1500.0;												// 角加速度1[rad/s^2]												// 角加速度3[rad/s^2]
 
 	GYRO_staErrChkAngle();			// エラー検出開始
 //	printf("");
@@ -1913,7 +1913,7 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_nowAcc		= 0;
 	st_data.f_ctrl_now			= st_info.f_mot_now;			// 現在速度
 	st_data.f_ctrl_trgt			= st_info.f_mot_now;			// 目標速度
-	st_data.f_ctrl_nowDist		= Get_NowDist();				//
+	st_data.f_ctrl_nowDist		= f_entryLen + st_info.f_mot_now * p_sla->us_sla_jerkAngaccTime * 0.001;				//
 	st_data.f_ctrl_dist			= f_entryLen + st_info.f_mot_now * (p_sla->us_sla_accAngvelTime + p_sla->us_sla_jerkAngaccTime)* 0.001;		// 加速距離
 //	st_data.f_ctrl_accAngleS		= st_info.f_mot_accAngleS1;		// 角加速度
 	st_data.f_ctrl_jerkAngle	= 0;
@@ -1921,7 +1921,7 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_trgtAccAngle		= st_info.f_mot_trgtAccAngle1;
 	st_data.f_ctrl_nowAngleS		= st_info.f_mot_accAnglejerk_v;						// 現在角速度
 	st_data.f_ctrl_trgtAngleS		= st_info.f_mot_trgtAngleS-st_info.f_mot_accAnglejerk_v;		// 目標角速度
-	st_data.f_ctrl_nowAngle		=  Get_NowAngle();						// 現在角度
+	st_data.f_ctrl_nowAngle		=  st_info.f_mot_l1_accanglejerk;						// 現在角度
 	st_data.f_ctrl_angle			= st_info.f_mot_l1_accanglejerk+st_info.f_mot_l1_accangleconst;			// 目標角度
 	st_data.f_ctrl_time 			=  p_sla->us_sla_accAngvelTime * 0.001;			// [msec] → [sec]
 	CTRL_setData( &st_data );							// データセット
@@ -1955,7 +1955,7 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_nowAcc		= 0;
 	st_data.f_ctrl_now			= st_info.f_mot_now;			// 現在速度
 	st_data.f_ctrl_trgt			= st_info.f_mot_now;			// 目標速度
-	st_data.f_ctrl_nowDist		= Get_NowDist();				//
+	st_data.f_ctrl_nowDist		= f_entryLen + st_info.f_mot_now * (p_sla->us_sla_accAngvelTime + p_sla->us_sla_jerkAngaccTime)* 0.001;				//
 	st_data.f_ctrl_dist			= f_entryLen + st_info.f_mot_now * (p_sla->us_sla_accAngvelTime + p_sla->us_sla_jerkAngaccTime*2.0)* 0.001;		// 加速距離
 //	st_data.f_ctrl_accAngleS		= st_info.f_mot_accAngleS1;		// 角加速度
 	st_data.f_ctrl_jerkAngle	= st_info.f_mot_jerkAngle*(-1.0);
@@ -1963,7 +1963,7 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_trgtAccAngle		= 0;
 	st_data.f_ctrl_nowAngleS		= st_info.f_mot_trgtAngleS - st_info.f_mot_accAnglejerk_v;						// 現在角速度
 	st_data.f_ctrl_trgtAngleS		= st_info.f_mot_trgtAngleS;		// 目標角速度
-	st_data.f_ctrl_nowAngle			=  Get_NowAngle();						// 現在角度
+	st_data.f_ctrl_nowAngle			=  st_info.f_mot_l1_accanglejerk+st_info.f_mot_l1_accangleconst;						// 現在角度
 	st_data.f_ctrl_angle			= st_info.f_mot_angle1;			// 目標角度
 	st_data.f_ctrl_time 			=  p_sla->us_sla_jerkAngaccTime * 0.001;			// [msec] → [sec]
 	CTRL_setData( &st_data );							// データセット
@@ -2001,7 +2001,7 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_nowAcc		= 0;
 	st_data.f_ctrl_now			= st_info.f_mot_now;			// 現在速度
 	st_data.f_ctrl_trgt			= st_info.f_mot_now;			// 目標速度
-	st_data.f_ctrl_nowDist		= Get_NowDist();
+	st_data.f_ctrl_nowDist		= f_entryLen + st_info.f_mot_now * (p_sla->us_sla_accAngvelTime + p_sla->us_sla_jerkAngaccTime*2.0)* 0.001;
 	st_data.f_ctrl_dist			= f_entryLen + st_info.f_mot_now * ( p_sla->us_sla_constAngvelTime + p_sla->us_sla_accAngvelTime + p_sla->us_sla_jerkAngaccTime*2.0) * 0.001;		// 等速距離
 //	st_data.f_ctrl_accAngleS		= 0;						// 角加速度
 	st_data.f_ctrl_jerkAngle	= 0;
@@ -2009,7 +2009,7 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_trgtAccAngle		= 0;
 	st_data.f_ctrl_nowAngleS		= st_info.f_mot_trgtAngleS;		// 現在角速度
 	st_data.f_ctrl_trgtAngleS	= st_info.f_mot_trgtAngleS;		// 目標角速度
-	st_data.f_ctrl_nowAngle		=  Get_NowAngle();			// 現在角度
+	st_data.f_ctrl_nowAngle		=  st_info.f_mot_angle1;			// 現在角度
 	st_data.f_ctrl_angle			= st_info.f_mot_angle1_2;		// 目標角度
 	st_data.f_ctrl_time 			= p_sla->us_sla_constAngvelTime * 0.001;		// [msec] → [sec]
 	CTRL_setData( &st_data );							// データセット
@@ -2047,7 +2047,7 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_nowAcc		= 0;
 	st_data.f_ctrl_now			= st_info.f_mot_now;			// 現在速度
 	st_data.f_ctrl_trgt			= st_info.f_mot_now;			// 目標速度
-	st_data.f_ctrl_nowDist		= Get_NowDist();		//
+	st_data.f_ctrl_nowDist		= f_entryLen + st_info.f_mot_now * ( p_sla->us_sla_constAngvelTime + p_sla->us_sla_accAngvelTime + p_sla->us_sla_jerkAngaccTime*2.0)* 0.001;		//
 	st_data.f_ctrl_dist			= f_entryLen + st_info.f_mot_now * ( p_sla->us_sla_constAngvelTime + p_sla->us_sla_accAngvelTime + p_sla->us_sla_jerkAngaccTime*3.0)* 0.001;		// 加速距離
 //	st_data.f_ctrl_accAngleS		= st_info.f_mot_accAngleS1;		// 角加速度
 	st_data.f_ctrl_jerkAngle	= st_info.f_mot_jerkAngle*(-1.0);
@@ -2055,7 +2055,7 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_trgtAccAngle		= st_info.f_mot_trgtAccAngle3;
 	st_data.f_ctrl_nowAngleS		= st_info.f_mot_trgtAngleS;						// 現在角速度
 	st_data.f_ctrl_trgtAngleS		= st_info.f_mot_trgtAngleS - st_info.f_mot_accAnglejerk_v;		// 目標角速度
-	st_data.f_ctrl_nowAngle			=  Get_NowAngle();						// 現在角度
+	st_data.f_ctrl_nowAngle			= st_info.f_mot_angle1_2;						// 現在角度
 	st_data.f_ctrl_angle			= st_info.f_mot_angle1_2+st_info.f_mot_l3_decanglejerk;			// 目標角度
 	st_data.f_ctrl_time 			=  p_sla->us_sla_jerkAngaccTime * 0.001;			// [msec] → [sec]
 	CTRL_setData( &st_data );							// データセット
@@ -2088,7 +2088,7 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_nowAcc		= 0;
 	st_data.f_ctrl_now			= st_info.f_mot_now;			// 現在速度
 	st_data.f_ctrl_trgt			= st_info.f_mot_now;			// 目標速度
-	st_data.f_ctrl_nowDist		= Get_NowDist();
+	st_data.f_ctrl_nowDist		= f_entryLen + st_info.f_mot_now * ( p_sla->us_sla_constAngvelTime + p_sla->us_sla_accAngvelTime + p_sla->us_sla_jerkAngaccTime*3.0)* 0.001;
 	st_data.f_ctrl_dist			= f_entryLen + st_info.f_mot_now * ( p_sla->us_sla_constAngvelTime + p_sla->us_sla_accAngvelTime*2.0 + p_sla->us_sla_jerkAngaccTime*3.0)* 0.001;		// 減速距離
 //	st_data.f_ctrl_accAngleS		= st_info.f_mot_accAngleS3;		// 角加速度
 	st_data.f_ctrl_jerkAngle	= 0;
@@ -2096,7 +2096,7 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_trgtAccAngle		= st_info.f_mot_trgtAccAngle3;
 	st_data.f_ctrl_nowAngleS		= st_info.f_mot_trgtAngleS - st_info.f_mot_accAnglejerk_v;		// 現在角速度
 	st_data.f_ctrl_trgtAngleS		= st_info.f_mot_accAnglejerk_v;				// 目標角速度
-	st_data.f_ctrl_nowAngle			=  Get_NowAngle();		// 現在角度
+	st_data.f_ctrl_nowAngle			= st_info.f_mot_angle1_2+st_info.f_mot_l3_decanglejerk;		// 現在角度
 	st_data.f_ctrl_angle			= st_info.f_mot_angle - st_info.f_mot_l3_accanglejerk;			// 目標角度
 	st_data.f_ctrl_time			= p_sla->us_sla_accAngvelTime * 0.001;			// [msec] → [sec]
 	CTRL_setData( &st_data );							// データセット
@@ -2132,7 +2132,7 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_nowAcc		= 0;
 	st_data.f_ctrl_now			= st_info.f_mot_now;			// 現在速度
 	st_data.f_ctrl_trgt			= st_info.f_mot_now;			// 目標速度
-	st_data.f_ctrl_nowDist		= Get_NowDist();
+	st_data.f_ctrl_nowDist		= f_entryLen + st_info.f_mot_now * ( p_sla->us_sla_constAngvelTime + p_sla->us_sla_accAngvelTime*2.0 + p_sla->us_sla_jerkAngaccTime*3.0)* 0.001;
 	st_data.f_ctrl_dist			= f_entryLen + st_info.f_mot_now * ( p_sla->us_sla_constAngvelTime + p_sla->us_sla_accAngvelTime*2.0 + p_sla->us_sla_jerkAngaccTime*4.0)* 0.001;		// 減速距離
 //	st_data.f_ctrl_accAngleS		= st_info.f_mot_accAngleS3;		// 角加速度
 	st_data.f_ctrl_jerkAngle	= st_info.f_mot_jerkAngle;
@@ -2140,7 +2140,7 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_trgtAccAngle		= 0;
 	st_data.f_ctrl_nowAngleS		= st_info.f_mot_accAnglejerk_v;		// 現在角速度
 	st_data.f_ctrl_trgtAngleS		= 0;				// 目標角速度
-	st_data.f_ctrl_nowAngle			=  Get_NowAngle();		// 現在角度
+	st_data.f_ctrl_nowAngle			= st_info.f_mot_angle - st_info.f_mot_l3_accanglejerk;		// 現在角度
 	st_data.f_ctrl_angle			= st_info.f_mot_angle;			// 目標角度
 	st_data.f_ctrl_time			= p_sla->us_sla_jerkAngaccTime * 0.001;			// [msec] → [sec]
 	CTRL_setData( &st_data );							// データセット

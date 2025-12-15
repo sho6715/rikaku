@@ -1169,14 +1169,14 @@ void CTRL_pol( void )
 	){
 		TR = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.0)+(TIRE_D/2.0/TREAD)*(INERTIA*(f_feedFoard_angle + f_angleSpeedCtrl+ f_distSenCtrl)))/GEAR_RATIO;
 		TL = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.0)-(TIRE_D/2.0/TREAD)*(INERTIA*(f_feedFoard_angle + f_angleSpeedCtrl+ f_distSenCtrl)))/GEAR_RATIO;
-		Ir = (TR+0.006/1000.0)/TORQUE_CONSTANT;
-		Il = (TL+0.006/1000.0)/TORQUE_CONSTANT;
+		Ir = (TR+0.00/1000.0)/TORQUE_CONSTANT;
+		Il = (TL+0.00/1000.0)/TORQUE_CONSTANT;
 	}
 
 	/* 壁あて制御 */
 	else if( en_Type == CTRL_HIT_WALL ){
-		TR = (TIRE_D/2.0/2.0)*(WEIGHT*(-1.0)*(300.0 * FF_HIT_BALANCE_R/1000.0 ));		
-		TL = (TIRE_D/2.0/2.0)*(WEIGHT*(-1.0)*(300.0 * FF_HIT_BALANCE_R/1000.0 ));
+		TR = (TIRE_D/2.0/2.0)*(WEIGHT*(-1.0)*(750.0 * FF_HIT_BALANCE_R/1000.0));		
+		TL = (TIRE_D/2.0/2.0)*(WEIGHT*(-1.0)*(750.0 * FF_HIT_BALANCE_L/1000.0));
 		Ir = (TR-0.0255/1000.0)/TORQUE_CONSTANT;
 		Il = (TL-0.0255/1000.0)/TORQUE_CONSTANT;
 	}
@@ -1187,15 +1187,15 @@ void CTRL_pol( void )
 		if( f_LastAngle > 0 ){
 			TR = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.0)+(TIRE_D/2.0/TREAD)*(INERTIA*(f_feedFoard_angle + f_angleSpeedCtrl+f_angleCtrl)/*+f_floorfriction*/))/GEAR_RATIO;
 			TL = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.0)-(TIRE_D/2.0/TREAD)*(INERTIA*(f_feedFoard_angle + f_angleSpeedCtrl+f_angleCtrl)/*+f_floorfriction*/))/GEAR_RATIO;
-			Ir = (TR+0.06/1000.0)/TORQUE_CONSTANT;
-			Il = (TL-0.06/1000.0)/TORQUE_CONSTANT;
+			Ir = (TR+0.0/1000.0)/TORQUE_CONSTANT;
+			Il = (TL-0.0/1000.0)/TORQUE_CONSTANT;
 		}
 		/*右旋回 */
 		else{			
 			TR = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.0)+(TIRE_D/2.0/TREAD)*(INERTIA*(f_feedFoard_angle*(-1.0) + f_angleSpeedCtrl+f_angleCtrl)/*+f_floorfriction*/))/GEAR_RATIO;
 			TL = ((TIRE_D/2.0/2.0)*((WEIGHT*(f_feedFoard_speed + f_speedCtrl))+0.0)-(TIRE_D/2.0/TREAD)*(INERTIA*(f_feedFoard_angle*(-1.0) + f_angleSpeedCtrl+f_angleCtrl)/*+f_floorfriction*/))/GEAR_RATIO;
-			Ir = (TR-0.06/1000.0)/TORQUE_CONSTANT;
-			Il = (TL+0.06/1000.0)/TORQUE_CONSTANT;
+			Ir = (TR-0.0/1000.0)/TORQUE_CONSTANT;
+			Il = (TL+0.0/1000.0)/TORQUE_CONSTANT;
 		}
 	}
 
