@@ -2179,8 +2179,8 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_trgtAccAngle		= 0;
 	st_data.f_ctrl_nowAngleS		= 0;						// 現在角速度
 	st_data.f_ctrl_trgtAngleS		= 0;						// 目標角度
-	st_data.f_ctrl_nowAngle		= 0;						// 現在角度
-	st_data.f_ctrl_angle			= 0;						// 目標角度
+	st_data.f_ctrl_nowAngle		= st_info.f_mot_angle;						// 現在角度
+	st_data.f_ctrl_angle			= st_info.f_mot_angle;						// 目標角度
 	st_data.f_ctrl_time 			= 0;						// 目標時間 [sec] ← 指定しない
 	CTRL_setData( &st_data );							// データセット
 //	LED =LED_ALL_OFF;

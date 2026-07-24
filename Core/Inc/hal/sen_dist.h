@@ -37,8 +37,8 @@
 #define L_FRONT_SKEW_ERR2				( 160 )
 #define R_FRONT_SKEW_ERR3				( 250 )
 #define L_FRONT_SKEW_ERR3				( 250 )
-#define R_FRONT_CTRL					(168)//( 370 )	//maekabehoseiniryuuyou
-#define L_FRONT_CTRL					(148)//( 300 )
+#define R_FRONT_CTRL					(153)//( 370 )	//maekabehoseiniryuuyou
+#define L_FRONT_CTRL					(133)//( 300 )
 #define R_FRONT_NOCTRL					(900)//( 530 )
 #define L_FRONT_NOCTRL					(1000)//( 450 )
 

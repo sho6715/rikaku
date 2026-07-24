@@ -770,7 +770,7 @@ void MODE_exe_m3( void )
 
 		case MODE_0:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,SEARCH_SPEED*4.0,
+			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,1.5,
 								SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*4.0);
@@ -802,7 +802,7 @@ void MODE_exe_m3( void )
 
 		case MODE_1:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,SEARCH_SPEED*5.0,
+			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,2.0,
 								SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*5.0);
@@ -834,7 +834,7 @@ void MODE_exe_m3( void )
 
 		case MODE_2:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_NORMAL,PARAM_VERY_SLOW,PARAM_SLOW,SEARCH_SPEED*6.0,
+			MODE_speed_parameter(PARAM_NORMAL,PARAM_VERY_SLOW,PARAM_SLOW,2.5,
 								SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
@@ -866,7 +866,7 @@ void MODE_exe_m3( void )
 
 		case MODE_3:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,SEARCH_SPEED*4.0,
+			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,1.5,
 								SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*4.0);
@@ -902,7 +902,7 @@ void MODE_exe_m3( void )
 
 		case MODE_4:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,SEARCH_SPEED*5.0,
+			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,2.0,
 								SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*5.0);
@@ -936,7 +936,7 @@ void MODE_exe_m3( void )
 
 		case MODE_5:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_SLOW,SEARCH_SPEED*6.0,
+			MODE_speed_parameter(PARAM_NORMAL,PARAM_VERY_SLOW,PARAM_SLOW,2.5,
 								SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
@@ -968,7 +968,7 @@ void MODE_exe_m3( void )
 
 		case MODE_6:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,SEARCH_SPEED*5.0,
+			MODE_speed_parameter(PARAM_SLOW,PARAM_VERY_SLOW,PARAM_SLOW,2.0,
 								SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED,SEARCH_SPEED);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*5.0);
@@ -1195,15 +1195,14 @@ void MODE_exe_m5( void )
 
 	uint64_t data =0;
 
-	printf("\r\n turn 45 \r\r");
-	PARAM_makeSra( 0.5, 550.0f, 7.50f,3000*PI,  SLA_45 );
-	printf("\r\n turn 90 \r\r");		
-	PARAM_makeSra( 0.5, 700.0f, 10.00f,3000*PI,  SLA_90 );	
-//	PARAM_makeSra( (float)SEARCH_SPEED, 150.0f, 3.00f,3000*PI,  SLA_90 );
-	printf("\r\n turn 135 \r\r");	
-	PARAM_makeSra( 0.5, 750.0f, 10.00f,3000*PI,  SLA_135 );	
-	printf("\r\n turn N90 \r\r");	
-	PARAM_makeSra( 0.5, 800.0f, 11.00f,3000*PI,  SLA_N90 );	
+	printf("\r\n turn 45 \r\n");
+	PARAM_makeSra( 0.5, 500.0f, 7.00f,6000*PI,  SLA_45 );
+	printf("\r\n turn 90 \r\n");		
+	PARAM_makeSra( 0.5, 600.0f, 10.00f,6000*PI,  SLA_90 );	
+	printf("\r\n turn 135 \r\n");	
+	PARAM_makeSra( 0.5, 650.0f, 12.00f,6000*PI,  SLA_135 );	
+	printf("\r\n turn N90 \r\n");	
+	PARAM_makeSra( 0.5, 850.0f, 14.00f,12000*PI,  SLA_N90 );
 
 	Map_Copy();
 
@@ -1217,7 +1216,7 @@ void MODE_exe_m5( void )
 
 		case MODE_0:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*4.0,
+			MODE_speed_parameter(PARAM_NORMAL,PARAM_VERY_SLOW,PARAM_NORMAL,2.0,
 								0.5,0.5,0.5,0.5);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*4.0);
@@ -1249,7 +1248,7 @@ void MODE_exe_m5( void )
 
 		case MODE_1:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*5.0,
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,2.5,
 								0.5,0.5,0.5,0.5);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*5.0);
@@ -1282,7 +1281,7 @@ void MODE_exe_m5( void )
 
 		case MODE_2:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*6.0,
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,3.0,
 								0.5,0.5,0.5,0.5);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
@@ -1315,7 +1314,7 @@ void MODE_exe_m5( void )
 
 		case MODE_3:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*4.0,
+			MODE_speed_parameter(PARAM_NORMAL,PARAM_VERY_SLOW,PARAM_NORMAL,2.0,
 								0.5,0.5,0.5,0.5);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*4.0);
@@ -1351,7 +1350,7 @@ void MODE_exe_m5( void )
 
 		case MODE_4:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_VERY_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*5.0,
+			MODE_speed_parameter(PARAM_NORMAL,PARAM_VERY_SLOW,PARAM_NORMAL,2.5,
 								0.5,0.5,0.5,0.5);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*5.0);
@@ -1384,7 +1383,7 @@ void MODE_exe_m5( void )
 
 		case MODE_5:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_VERY_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*6.0,
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,3.0,
 								0.5,0.5,0.5,0.5);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
@@ -1417,7 +1416,7 @@ void MODE_exe_m5( void )
 
 		case MODE_6:
 			SetLED(0x0e);
-			MODE_speed_parameter(PARAM_VERY_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,SEARCH_SPEED*6.0,
+			MODE_speed_parameter(PARAM_FAST,PARAM_VERY_SLOW,PARAM_NORMAL,3.0,
 								0.5,0.5,0.5,0.5);
 /*
 			MOT_setTrgtSpeed(SEARCH_SPEED*6.0);
