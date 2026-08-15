@@ -25,26 +25,26 @@
 
 #define R_FRONT_REF					(985)
 #define L_FRONT_REF					(750)//( 210 )
-#define R_SIDE_REF					(270)//( 240 )
-#define L_SIDE_REF					(384)//( 200 )
-#define R_FRONT_WALL					(100)//( 45 )
-#define L_FRONT_WALL					(85)//( 45 )
-#define R_SIDE_WALL					(100)//( 110 )
-#define L_SIDE_WALL					(135)//( 70 )
+#define R_SIDE_REF					(280)//( 240 )
+#define L_SIDE_REF					(350)//( 200 )
+#define R_FRONT_WALL					(90)//( 45 )
+#define L_FRONT_WALL					(75)//( 45 )
+#define R_SIDE_WALL					(95)//( 110 )
+#define L_SIDE_WALL					(110)//( 70 )
 #define R_FRONT_SKEW_ERR1				( 80 )//仮
 #define L_FRONT_SKEW_ERR1				( 70 )
 #define R_FRONT_SKEW_ERR2				( 192 )
 #define L_FRONT_SKEW_ERR2				( 160 )
 #define R_FRONT_SKEW_ERR3				( 250 )
 #define L_FRONT_SKEW_ERR3				( 250 )
-#define R_FRONT_CTRL					(153)//( 370 )	//maekabehoseiniryuuyou
-#define L_FRONT_CTRL					(133)//( 300 )
-#define R_FRONT_NOCTRL					(900)//( 530 )
+#define R_FRONT_CTRL					(150)//( 370 )	//maekabehoseiniryuuyou
+#define L_FRONT_CTRL					(130)//( 300 )
+#define R_FRONT_NOCTRL					(1300)//( 530 )
 #define L_FRONT_NOCTRL					(1000)//( 450 )
 
 #define FRONT_WALL_MINUS				(45)
 
-#define FRONT_WALL_MISS_DIF				(230)
+#define FRONT_WALL_MISS_DIF				(300)
 
 
 /*距離センサポ�??��リングタイ?��?*/

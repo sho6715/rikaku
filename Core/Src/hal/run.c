@@ -99,7 +99,7 @@ bool			bl_IsWallEdge = FALSE;				// 壁切れ検知（TRUE:検知、FALSE：非�
 float			f_WallEdgeAddDist =0.0;				// 壁切れ補正の移動距離
 
 en_TURNTYPE		en_TurnType;
-
+bool			bl_SetWalledge = FALSE;
 
 
 float MOT_getAcc1( void )
@@ -162,7 +162,8 @@ void MOT_goBlock_AccConstDec( float f_fin, enMOT_ST_TYPE en_type, enMOT_GO_ST_TY
 				DCM_brakeMot( DCM_L );		
 				break;
 			}				
-			MOT_setWallEdgeDist();
+			bl_SetWalledge = MOT_setWallEdgeDist();
+			if(bl_SetWalledge == TRUE)break;
 
 		}
 		//acc
@@ -191,7 +192,8 @@ void MOT_goBlock_AccConstDec( float f_fin, enMOT_ST_TYPE en_type, enMOT_GO_ST_TY
 				DCM_brakeMot( DCM_L );		
 				break;
 			}				
-			MOT_setWallEdgeDist();
+			bl_SetWalledge = MOT_setWallEdgeDist();
+			if(bl_SetWalledge == TRUE)break;
 
 		}
 		//acc - jerk
@@ -220,7 +222,8 @@ void MOT_goBlock_AccConstDec( float f_fin, enMOT_ST_TYPE en_type, enMOT_GO_ST_TY
 				DCM_brakeMot( DCM_L );		
 				break;
 			}				
-			MOT_setWallEdgeDist();
+			bl_SetWalledge = MOT_setWallEdgeDist();
+			if(bl_SetWalledge == TRUE)break;
 
 		}
 
@@ -261,7 +264,8 @@ void MOT_goBlock_AccConstDec( float f_fin, enMOT_ST_TYPE en_type, enMOT_GO_ST_TY
 			DCM_brakeMot( DCM_L );		
 			break;
 		}				
-		MOT_setWallEdgeDist();
+		bl_SetWalledge = MOT_setWallEdgeDist();
+		if(bl_SetWalledge == TRUE)break;
 
 	}
 
@@ -299,7 +303,8 @@ void MOT_goBlock_AccConstDec( float f_fin, enMOT_ST_TYPE en_type, enMOT_GO_ST_TY
 				DCM_brakeMot( DCM_L );		
 				break;
 			}				
-			MOT_setWallEdgeDist();
+			bl_SetWalledge = MOT_setWallEdgeDist();
+			if(bl_SetWalledge == TRUE)break;
 			
 
 		}
@@ -328,7 +333,8 @@ void MOT_goBlock_AccConstDec( float f_fin, enMOT_ST_TYPE en_type, enMOT_GO_ST_TY
 				DCM_brakeMot( DCM_L );		
 				break;
 			}				
-			MOT_setWallEdgeDist();
+			bl_SetWalledge = MOT_setWallEdgeDist();
+			if(bl_SetWalledge == TRUE)break;
 
 			if((EscapeWait>2.0)&&(SearchFlag == TRUE))break;
 
@@ -358,7 +364,8 @@ void MOT_goBlock_AccConstDec( float f_fin, enMOT_ST_TYPE en_type, enMOT_GO_ST_TY
 				DCM_brakeMot( DCM_L );		
 				break;
 			}				
-			MOT_setWallEdgeDist();
+			bl_SetWalledge = MOT_setWallEdgeDist();
+			if(bl_SetWalledge == TRUE)break;
 
 			if((EscapeWait>2.0)&&(SearchFlag == TRUE))break;
 		}
@@ -403,6 +410,8 @@ void MOT_goBlock_AccConstDec( float f_fin, enMOT_ST_TYPE en_type, enMOT_GO_ST_TY
 		( f_WallEdgeAddDist != 0.0f ) &&
 		( f_fin != 0.0f )
 	){
+		bl_SetWalledge = FALSE;
+
 		st_data.en_ctrl_type			= CTRL_CONST;
 		st_data.f_ctrl_jerk			= 0;
 		st_data.f_ctrl_trgtAcc		= 0;		// 加速度指定
@@ -1912,7 +1921,7 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_trgtAccAngle		= st_info.f_mot_trgtAccAngle1;
 	st_data.f_ctrl_nowAngleS		= st_info.f_mot_accAnglejerk_v;						// 現在角速度
 	st_data.f_ctrl_trgtAngleS		= st_info.f_mot_trgtAngleS-st_info.f_mot_accAnglejerk_v;		// 目標角速度
-	st_data.f_ctrl_nowAngle		= st_info.f_mot_l1_accanglejerk;						// 現在角度
+	st_data.f_ctrl_nowAngle		=  st_info.f_mot_l1_accanglejerk;						// 現在角度
 	st_data.f_ctrl_angle			= st_info.f_mot_l1_accanglejerk+st_info.f_mot_l1_accangleconst;			// 目標角度
 	st_data.f_ctrl_time 			=  p_sla->us_sla_accAngvelTime * 0.001;			// [msec] → [sec]
 	CTRL_setData( &st_data );							// データセット
@@ -1954,7 +1963,7 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_trgtAccAngle		= 0;
 	st_data.f_ctrl_nowAngleS		= st_info.f_mot_trgtAngleS - st_info.f_mot_accAnglejerk_v;						// 現在角速度
 	st_data.f_ctrl_trgtAngleS		= st_info.f_mot_trgtAngleS;		// 目標角速度
-	st_data.f_ctrl_nowAngle			= st_info.f_mot_l1_accanglejerk+st_info.f_mot_l1_accangleconst;						// 現在角度
+	st_data.f_ctrl_nowAngle			=  st_info.f_mot_l1_accanglejerk+st_info.f_mot_l1_accangleconst;						// 現在角度
 	st_data.f_ctrl_angle			= st_info.f_mot_angle1;			// 目標角度
 	st_data.f_ctrl_time 			=  p_sla->us_sla_jerkAngaccTime * 0.001;			// [msec] → [sec]
 	CTRL_setData( &st_data );							// データセット
@@ -2000,7 +2009,7 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	st_data.f_ctrl_trgtAccAngle		= 0;
 	st_data.f_ctrl_nowAngleS		= st_info.f_mot_trgtAngleS;		// 現在角速度
 	st_data.f_ctrl_trgtAngleS	= st_info.f_mot_trgtAngleS;		// 目標角速度
-	st_data.f_ctrl_nowAngle		= st_info.f_mot_angle1;			// 現在角度
+	st_data.f_ctrl_nowAngle		=  st_info.f_mot_angle1;			// 現在角度
 	st_data.f_ctrl_angle			= st_info.f_mot_angle1_2;		// 目標角度
 	st_data.f_ctrl_time 			= p_sla->us_sla_constAngvelTime * 0.001;		// [msec] → [sec]
 	CTRL_setData( &st_data );							// データセット
@@ -2199,7 +2208,6 @@ void MOT_goSla( enMOT_SLA_CMD en_type, stSLA* p_sla )
 	GYRO_endErrChkAngle();					// エラー検出終了
 //	CTRL_clrNowData();
 	CTRL_setNowData_Err(/*st_data.f_dist ,*/st_data.f_ctrl_angle);
-
 }
 
 void turntable(void)
